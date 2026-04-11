@@ -1,0 +1,1515 @@
+00:00:00,300 --> 00:00:00,560 [speaker_0]
+Sí
+
+00:00:00,600 --> 00:00:00,870 [speaker_1]
+Cocina
+
+00:00:00,880 --> 00:00:03,000 [speaker_0]
+¿Tienes un ratón por casual?
+
+00:00:03,040 --> 00:00:03,580 [speaker_1]
+Qué va, tío.
+
+00:00:03,620 --> 00:00:03,869 [speaker_0]
+Es que yo no-
+
+00:00:03,869 --> 00:00:04,520 [speaker_1]
+No lo traigo
+
+00:00:04,540 --> 00:00:06,270 [speaker_0]
+...tengo, te lo digo. Si tuvieras tú, me lo sabes.
+
+00:00:06,320 --> 00:00:09,080 [speaker_1]
+Úsalo. Sí, porque encima aquí pa' bajar-
+
+00:00:09,120 --> 00:00:09,470 [speaker_0]
+Es que por eso
+
+00:00:09,470 --> 00:00:09,940 [speaker_1]
+...es una mierda.
+
+00:00:09,960 --> 00:00:10,470 [speaker_0]
+Me voy a poner-
+
+00:00:10,520 --> 00:00:16,260 [speaker_1]
+Si haces así, se baja por otro lado. Es una basura.
+
+00:00:16,280 --> 00:00:18,070 [speaker_0]
+¿Por qué lado salimos hoy? [ruido]
+
+00:00:18,070 --> 00:00:19,440 [speaker_1]
+O por ahí o por allí.
+
+00:00:19,540 --> 00:00:19,670 [speaker_0]
+Ah, aquí.
+
+00:00:19,670 --> 00:00:22,740 [speaker_1]
+Bueno, a lo mejor te venga.
+
+00:00:22,800 --> 00:00:28,460 [speaker_0]
+Vale. Vale, o sea, a ver, te explico. Eh, o sea, como lo has forkeado, eh,
+puedes borrar cosas y tal.
+
+00:00:28,500 --> 00:00:28,640 [speaker_1]
+Ajá.
+
+00:00:28,660 --> 00:00:33,769 [speaker_0]
+Entonces, yo te diría que esto del juego de la vida y esto de fitness en la goma lo borres,
+porque te es relevante, o sea, al final...
+
+00:00:33,769 --> 00:00:34,600 [speaker_1]
+¿Qué es eso, Mario? O sea-
+
+00:00:34,700 --> 00:00:43,000 [speaker_0]
+Nada, esto son otros modelos neuronales. O sea, yo, por ejemplo, aquí,
+esto es como una ecuación diferencial continua. Entonces, yo puedo meterle aquí, eh,
+
+00:00:43,060 --> 00:00:43,260 [speaker_1]
+Ajá.
+
+00:00:43,300 --> 00:00:59,360 [speaker_0]
+Esto no lo he cambiado, no lo tengo que cambiar, esto es cinco. Ah, que se activa, no, mentira. Eh,
+esto cero coma dieciséis, esto cero cinco.
+
+00:01:00,240 --> 00:01:02,900 [speaker_1]
+Son parámetros reales en imagen, ¿no? O sea, son-
+
+00:01:02,920 --> 00:01:10,860 [speaker_0]
+Basados, o sea, realistas se supone. Sí, justo. Entonces, yo aquí me meto, por ejemplo, y yo qué sé,
+pues tienes aquí...
+
+00:01:11,130 --> 00:01:12,880 [speaker_1]
+¿Y eso qué, qué se supone que es?
+
+00:01:12,920 --> 00:01:29,880 [speaker_0]
+Esto es un cerebro. Tú tienes, si no me equivoca la B, puedes ver aquí el-- en plan,
+esto es el cerebro, esto es materia gris, materia blanca, bueno, esto sería como la corteza.
+
+00:01:30,290 --> 00:01:32,020 [speaker_1]
+De propagar la información, entiendo.
+
+00:01:32,040 --> 00:01:34,940 [speaker_0]
+Claro, exacto. O sea, como de cómo se propaga-
+
+00:01:35,280 --> 00:01:35,740 [speaker_1]
+Señales
+
+00:01:35,750 --> 00:01:38,530 [speaker_0]
+...y luego lo que quiero probar es poner como un tumor y tal, o sea.
+
+00:01:38,540 --> 00:01:38,850 [speaker_1]
+Qué guapo.
+
+00:01:38,880 --> 00:01:41,420 [speaker_0]
+Es decir, que esto te-- o sea, esto no tiene nada que ver con lo tuyo, ¿sabes? O sea.
+
+00:01:41,460 --> 00:01:42,480 [speaker_1]
+Sí.
+
+00:01:42,500 --> 00:01:44,810 [speaker_0]
+Entonces, esto lo, lo puedes borrar si quieres, no...
+
+00:01:44,820 --> 00:01:50,010 [speaker_1]
+Al final, la, lo que esto tiene es el, el algoritmo en el que se propaga, se llama así o...
+
+00:01:50,020 --> 00:01:54,230 [speaker_0]
+Claro, justo. El fitness en la goma es un sistema de ecuaciones diferenciales,
+de dos ecuaciones diferenciales.
+
+00:01:54,230 --> 00:01:55,980 [speaker_1]
+¿Son, son estocásticas o algo?
+
+00:01:56,000 --> 00:02:07,500 [speaker_0]
+No, no, no. No, pero, no,
+pero en este caso yo sí que le añadí un término estocástico para probar una cosa que se llama
+
+00:02:07,540 --> 00:02:07,990 [speaker_1]
+Amigo.
+
+00:02:08,000 --> 00:02:26,660 [speaker_0]
+Entonces, cuando yo pongo aquí el ruido a cero, lo que ocurre es que el sistema muere.
+Pero si yo aquí pongo el ruido a cero co-- a uno, [ruido] lo que ocurre es que el sistema no muere.
+
+00:02:27,780 --> 00:02:28,769 [speaker_1]
+No sé por qué, pero... [inhala]
+
+00:02:28,769 --> 00:02:32,760 [speaker_0]
+Por la resonancia estocástica. Se lla-se llama así.
+
+00:02:32,780 --> 00:02:33,310 [speaker_1]
+Hostias.
+
+00:02:33,320 --> 00:02:43,980 [speaker_0]
+Para cuando añade ruido, como que en vez de [carraspeo] hacer mal, por así decirlo, ¿no?
+Porque uno normalmente pensaría que añadir ruido a un sistema siempre hace como efecto negativo.
+
+00:02:44,040 --> 00:02:44,240 [speaker_1]
+Sí.
+
+00:02:44,260 --> 00:02:45,750 [speaker_0]
+Pues en este caso tiene un efecto positivo.
+
+00:02:45,760 --> 00:02:47,620 [speaker_1]
+Oye, qué guapo, tú, que hasta hay un circulito.
+
+00:02:47,640 --> 00:02:51,100 [speaker_0]
+Ya. Pero el caso, que esto es un-- o sea, que esto a ti te, te la pela, vaya.
+
+00:02:51,140 --> 00:02:51,900 [speaker_1]
+Vale, vale. Sí.
+
+00:02:51,920 --> 00:02:54,190 [speaker_0]
+Que si, haz lo que quieras, si lo quieres borrar o lo que-- vale.
+
+00:02:54,220 --> 00:02:56,240 [speaker_1]
+Okey. O bueno, sí.
+
+00:02:56,260 --> 00:03:00,900 [speaker_0]
+Entonces, luego este modelo es el que a ti te interesa. Esto lo puedo cerrar, ¿no?
+
+00:03:00,940 --> 00:03:02,620 [speaker_1]
+Sí, sí, todo.
+
+00:03:02,700 --> 00:03:11,640 [speaker_0]
+Eh, este modelo es el que a ti te interesa, ¿vale?
+Para correr los códigos siempre tienes que correr el que se llama main GPU mode. Bueno, por cierto,
+
+00:03:11,650 --> 00:03:11,650 [speaker_1]
+Vale.
+
+00:03:11,660 --> 00:03:12,860 [speaker_0]
+No sé si lo conoces, ¿no?
+
+00:03:12,960 --> 00:03:14,020 [speaker_1]
+Eh, más o menos.
+
+00:03:14,030 --> 00:03:16,420 [speaker_0]
+Pues eso también lo puedes borrar, o sea, que también te es relevante.
+
+00:03:16,540 --> 00:03:19,540 [speaker_1]
+Vale. Espera, lo meto en una carpeta, es-- bueno, luego lo meto.
+
+00:03:20,380 --> 00:03:32,700 [speaker_0]
+O sea, entonces,
+este modelo de Greenberg Hastings lo único que tiene es que es un modelo de autómatas celulares,
+
+00:03:32,740 --> 00:03:33,540 [speaker_1]
+Sí.
+
+00:03:33,640 --> 00:03:58,620 [speaker_0]
+Eh, pues es una discretización del espacio. Entonces, tú lo que tienes es como tres estados. Aquí.
+Tienes estado activo, estado inactivo y luego lo que se llama estado refractario. Eh,
+
+00:03:58,870 --> 00:03:59,180 [speaker_1]
+Sí.
+
+00:03:59,220 --> 00:04:01,320 [speaker_0]
+Vale, eso es cambiar un parámetro.
+
+00:04:01,380 --> 00:04:02,460 [speaker_1]
+De activo a inactivo.
+
+00:04:02,480 --> 00:04:05,500 [speaker_0]
+Es, es cambiar un parámetro aquí en el shader, que ahora te digo qué es y ya está.
+
+00:04:05,540 --> 00:04:06,430 [speaker_1]
+Ah.
+
+00:04:06,520 --> 00:04:18,280 [speaker_0]
+Eh, pero si yo, por ejemplo, eh, inicio esto... Ahí está, lo dejo como era. Yo hago zoom,
+ves que es una discretización del espacio, o sea.
+
+00:04:18,340 --> 00:04:19,040 [speaker_1]
+Ah.
+
+00:04:19,060 --> 00:04:28,570 [speaker_0]
+Entonces, si yo aquí, por ejemplo, activo uno, con el clic izquie-- bueno, por cierto,
+con el clic izquierdo activas, activas o desactivas. Con el clic derecho, eh...
+
+00:04:28,600 --> 00:04:29,160 [speaker_1]
+Te desplazas.
+
+00:04:29,220 --> 00:04:34,690 [speaker_0]
+Te desplazas, justo. Y si pulsas la rueda del ratón, bloqueas las células. Entonces,
+estas se quedan como están, que hacen como una pared.
+
+00:04:34,760 --> 00:04:34,940 [speaker_1]
+Ah.
+
+00:04:34,960 --> 00:04:36,050 [speaker_0]
+Tipo, si yo hago así...
+
+00:04:36,060 --> 00:04:36,880 [speaker_1]
+Es imposible que-
+
+00:04:36,890 --> 00:04:36,890 [speaker_0]
+Pues-
+
+00:04:37,340 --> 00:04:37,820 [speaker_1]
+No interactúan
+
+00:04:37,860 --> 00:04:42,000 [speaker_0]
+...y yo pongo aquí, si te fijas, ¿ves? No. Entonces, como que rodea la pared.
+
+00:04:42,020 --> 00:04:44,030 [speaker_1]
+Hostias, o sea...
+
+00:04:44,060 --> 00:04:44,480 [speaker_0]
+Entonces-
+
+00:04:44,540 --> 00:04:46,400 [speaker_1]
+El color, ¿qué, qué significa la escala?
+
+00:04:46,440 --> 00:04:56,700 [speaker_0]
+Claro, ah, eso, justo. Blanco es activo, negro, obviamente inactivo, y luego rojo es refractario.
+Pero la intensidad de rojo, si te fijas, cambia.
+
+00:04:56,720 --> 00:04:57,580 [speaker_1]
+Sí.
+
+00:04:57,620 --> 00:05:12,850 [speaker_0]
+La-- los pasos de color entre rojos depende del periodo refractario.
+Ahora mismo está puesto en quince iteraciones. Es decir, hasta que esto esté, mira,
+
+00:05:12,850 --> 00:05:13,580 [speaker_1]
+¿Aquí quince?
+
+00:05:13,620 --> 00:05:21,760 [speaker_0]
+Claro, aquí. O sea, porque si te fijas, o sea, porque este se activa el primero,
+cuando el frente activo pasa al segundo, esta pasa una iteración, dos, tres, o sea...
+
+00:05:21,780 --> 00:05:24,300 [speaker_1]
+Vale, vale. Es una medida un poco del tiempo que...
+
+00:05:24,310 --> 00:05:42,580 [speaker_0]
+Sí, justo del tiempo que pasa refractario. Claro, claro, sí, sí. Entonces, claro,
+lo que tiene es que si tú chocas, si tú chocas, em... [titubeo] bueno, espérate, espérate, espérate.
+
+00:05:42,640 --> 00:05:45,980 [speaker_1]
+¿Usas un PNG como, como patrón?
+
+00:05:46,040 --> 00:05:57,620 [speaker_0]
+Sí, lo guardo como... o sea, es un PNG y yo aquí tengo una puerta lógica. Entonces,
+si yo por ejemplo meto aquí esta, esto me costó la vida hacer programar.
+
+00:05:57,740 --> 00:05:58,570 [speaker_1]
+Ah, y se pone solo.
+
+00:05:58,580 --> 00:06:08,686 [speaker_0]
+Claro, claro. En plan, esto es una puerta NOT¿Vale?
+Esto siempre tiene que estar activo porque una puerta NOT, obviamente, necesitas meterle energía.
+
+00:06:08,696 --> 00:06:09,986 [speaker_2]
+Ah, claro, y por eso se queda fija.
+
+00:06:09,996 --> 00:06:10,856 [speaker_0]
+Claro, esto siempre está así.
+
+00:06:10,896 --> 00:06:11,816 [speaker_2]
+Qué bueno, qué bueno.
+
+00:06:11,856 --> 00:06:24,016 [speaker_0]
+Entonces, y esto es como la entrada, por así decirlo. Si te fijas, eh, cuando-- ah, bueno, espérate,
+me ha cambiado lo de los-- mierda, [risas] lo de los vecinos, aquí.
+
+00:06:24,026 --> 00:06:25,556 [speaker_2]
+¿Eso qué hacía?
+
+00:06:25,616 --> 00:06:31,976 [speaker_0]
+El umbral de ta-- pues que se activa si tienes un vecino activo o dos vecinos activos, o tre--
+o sea, lo que tú decidas.
+
+00:06:31,996 --> 00:06:33,616 [speaker_2]
+Vale.
+
+00:06:33,676 --> 00:06:34,176 [speaker_0]
+Uy.
+
+00:06:34,216 --> 00:06:35,976 [speaker_2]
+O sea, ¿y el mínimo es dos vecinos? No-
+
+00:06:36,016 --> 00:06:37,006 [speaker_0]
+No, el mínimo es uno.
+
+00:06:37,016 --> 00:06:38,665 [speaker_2]
+O cero si no, no hace nada.
+
+00:06:38,676 --> 00:06:42,936 [speaker_0]
+Cero, lo que pasa es que, no sabes, se va a rom-- en plan, se va a romper, ¿sabes? Tipo...
+
+00:06:42,956 --> 00:06:43,916 [speaker_2]
+Ajá.
+
+00:06:43,936 --> 00:07:04,016 [speaker_0]
+Entonces, si yo, por ejemplo, pongo aquí esta puerta, ¿no? Y pongo aquí esto, uy,
+lo que vas a ver... Espérate, espérate, aquí la he liado. Mira, ya se ha liado.
+
+00:07:04,036 --> 00:07:04,756 [speaker_2]
+Hostias.
+
+00:07:05,836 --> 00:07:23,956 [speaker_0]
+¿Qué ocurre? ¿Cómo puedes tú cambiar esto, eh, para tuuu proyecto, no? Bueno, antes de eso.
+Esto está programado con una librería, bueno, que se llama PySide. Que en PySide esto,
+
+00:07:24,036 --> 00:07:24,156 [speaker_2]
+Sí
+
+00:07:24,216 --> 00:07:28,436 [speaker_0]
+...eso se encarga de eso, hacerlo así chulo, ¿no?
+
+00:07:28,496 --> 00:07:28,656 [speaker_2]
+Ajá.
+
+00:07:28,736 --> 00:07:43,616 [speaker_0]
+Y lo bueno que eso también tiene es que para simulaciones--
+porque eso te permite verlo en tiempo real, y eso está, está chulo como para visualizarlo y tal,
+
+00:07:43,636 --> 00:07:44,266 [speaker_2]
+El resultado.
+
+00:07:44,296 --> 00:08:01,736 [speaker_0]
+Claro, el resultado lo más rápido posible. Entonces, eso es lo bueno que tiene,
+es que si tú te vienes aquí-- bueno, aquí en verdad es más fácil verlo aquí. Esto es, por ejemplo,
+
+00:08:01,776 --> 00:08:02,156 [speaker_2]
+Hostias
+
+00:08:02,196 --> 00:08:04,496 [speaker_0]
+...me la pelo, la verdad. Eh-
+
+00:08:04,826 --> 00:08:07,716 [speaker_2]
+Bueno, eso si se ejecuta, seguro que ahí te instala-
+
+00:08:07,776 --> 00:08:08,576 [speaker_0]
+Sí, o sea, es una chorrada
+
+00:08:08,736 --> 00:08:09,696 [speaker_2]
+...me sugiere hasta el programa.
+
+00:08:09,716 --> 00:08:24,386 [speaker_0]
+Eh, entonces,
+esto lo que te permite cuando tú haces un experimento es poner aquí la velocidad de simulación,
+
+00:08:24,436 --> 00:08:24,865 [speaker_2]
+En la pantalla
+
+00:08:24,865 --> 00:08:30,456 [speaker_0]
+...para, no, para verlo en tiempo real, pues tú lo pones a veinticuatro, ¿no? Por ejemplo,
+veinticuatro frames por segundo-
+
+00:08:30,536 --> 00:08:30,645 [speaker_2]
+Ah, vale
+
+00:08:30,645 --> 00:08:48,016 [speaker_0]
+...o sesenta, lo que-- en plan un número relativamente bajo.
+Si tú lo que quieres es una simulación en la que lo que te interesa es el resultado,
+
+00:08:48,036 --> 00:08:50,406 [speaker_2]
+Sí, porque si no imagino que va a intentar mostrar todo y se va a ir a Dios.
+
+00:08:50,416 --> 00:09:07,476 [speaker_0]
+Claro, le das a hide y te la-- en plan, ya está. Le pones lo de process events,
+porque esto es básicamente para que si-- para que Windows no lo detecte como una ventana congelada,
+
+00:09:07,496 --> 00:09:08,466 [speaker_2]
+Claro.
+
+00:09:08,556 --> 00:09:13,856 [speaker_0]
+Eh, entonces, eso es lo bueno, que si yo ahora corri-corriese eso, por-- esto, por ejemplo, bueno,
+te va a dar error lo del TQDM, pero-
+
+00:09:14,856 --> 00:09:16,356 [speaker_2]
+Joder, lo de usar el-
+
+00:09:16,376 --> 00:09:16,486 [speaker_0]
+¿El qué?
+
+00:09:16,636 --> 00:09:22,096 [speaker_2]
+...el cociente que sea entero, la verdad que pensaba que era una idea de la IA,
+pero ya veo que lo tienes tú también, o sea que-
+
+00:09:22,106 --> 00:09:22,706 [speaker_0]
+¿El qué, el qué?
+
+00:09:22,716 --> 00:09:30,406 [speaker_2]
+Porque lo he usado también en el TFG. Lo de cada cien pasos que usas el comando porcentaje,
+que justo esto. Te dices: "Vale, si el cociente-
+
+00:09:30,406 --> 00:09:30,406 [speaker_0]
+Ya
+
+00:09:30,496 --> 00:09:33,376 [speaker_2]
+...es cero, eh, o sea, el cociente del resto, creo que es-
+
+00:09:33,416 --> 00:09:34,226 [speaker_0]
+Sí, el resto, el resto.
+
+00:09:34,256 --> 00:09:39,906 [speaker_2]
+Justo. Que digo: "Eso no sé si es muy rebu", porque se lo metí a--
+[risas] se lo metí a mi tutor y digo: "Igual dice: 'Esto no te lo has sacado de la IA'".
+
+00:09:39,906 --> 00:09:42,386 [speaker_0]
+No, no, es, o sea, es...
+
+00:09:42,386 --> 00:09:43,276 [speaker_2]
+¿Qué pasa ahí?
+
+00:09:43,376 --> 00:09:44,816 [speaker_0]
+Eh, es que lo del TQDM-
+
+00:09:44,836 --> 00:09:45,046 [speaker_2]
+Ah, hostia
+
+00:09:45,056 --> 00:09:47,106 [speaker_0]
+...es básicamente una barra de progreso. Está chulo.
+
+00:09:47,176 --> 00:09:47,446 [speaker_2]
+Ah, qué guay.
+
+00:09:47,456 --> 00:10:01,596 [speaker_0]
+Para verlo. Entonces, te sale como cien por cien, te sale como el número de pasos que tiene que dar,
+te sale cuánto ha tardado en la última iteración,
+
+00:10:01,616 --> 00:10:03,176 [speaker_2]
+Lo que pasa es que trae su librería, ¿no?
+
+00:10:03,216 --> 00:10:07,556 [speaker_0]
+Claro, es una librería, pero si no te importa que te borre esto.
+
+00:10:08,316 --> 00:10:08,835 [speaker_2]
+Claro.
+
+00:10:09,016 --> 00:10:13,666 [speaker_0]
+Eh, para que puedas correrlo y veas a lo que me refiero. Eh...
+
+00:10:13,696 --> 00:10:15,746 [speaker_2]
+Coméntalo, si no, fuera.
+
+00:10:15,836 --> 00:10:18,656 [speaker_0]
+Ah, era buena idea haberlo comentado. Pero bueno, ya.
+
+00:10:18,696 --> 00:10:20,646 [speaker_2]
+Da igual si...
+
+00:10:21,736 --> 00:10:31,836 [speaker_0]
+Ahora lo que va a dar error es el pBar. [ruido de taladro] Bueno.
+
+00:10:31,846 --> 00:10:34,446 [speaker_2]
+Me quieren que llame a la autoescuela, creo que no...
+
+00:10:34,456 --> 00:10:46,356 [speaker_0]
+Vaya. Fuera esto. Fuera. Vale, ya está, creo.
+
+00:10:46,396 --> 00:10:50,036 [speaker_2]
+El if name, tío, yo no le-- o sea, no sé por qué-- o sea-
+
+00:10:50,056 --> 00:10:51,496 [speaker_0]
+¿Lo de if name equals name?
+
+00:10:51,556 --> 00:10:53,916 [speaker_2]
+Sí, bro, porque para nuestros códigos, que son más cortos-
+
+00:10:53,936 --> 00:10:54,126 [speaker_0]
+Bueno
+
+00:10:54,396 --> 00:10:56,856 [speaker_2]
+...¿sabes? No... O este, este código, por ejemplo, digo.
+
+00:10:56,876 --> 00:10:58,166 [speaker_0]
+Bueno, o sea...
+
+00:10:58,176 --> 00:10:59,656 [speaker_2]
+Vale, ese no.
+
+00:10:59,716 --> 00:11:00,426 [speaker_0]
+O sea...
+
+00:11:00,426 --> 00:11:02,266 [speaker_2]
+¿Esto es todo para el widget de...?
+
+00:11:02,296 --> 00:11:03,316 [speaker_0]
+Esto es todo para-- esto es la simulación.
+
+00:11:03,336 --> 00:11:03,826 [speaker_2]
+La pantalla, ¿eh?
+
+00:11:03,826 --> 00:11:11,676 [speaker_0]
+Esto es la simulación. La pantalla es, eh... Aquí está. Esto. En plan,
+esto es como lo que has visto de menú, que sale arriba como configuración-
+
+00:11:11,716 --> 00:11:11,826 [speaker_2]
+Sí
+
+00:11:12,036 --> 00:11:13,936 [speaker_0]
+...eso es esto. Esto es-
+
+00:11:13,946 --> 00:11:15,076 [speaker_2]
+O sea, eso es el-
+
+00:11:15,116 --> 00:11:18,505 [speaker_0]
+Esto es como lo que hay detrás de la simulación, que si quieres te lo explico y si no, si no,
+pues no.
+
+00:11:18,536 --> 00:11:19,466 [speaker_2]
+No, pues muy genial, pero-
+
+00:11:19,556 --> 00:11:34,456 [speaker_0]
+Eh, pero bueno, el caso, lo que te permite eso es que si yo corro esto, vas a ver, bueno,
+te dice que selecciones una carpeta, eh, da igual, luego lo borras, vale. ¿Ves? Te sale y se,
+
+00:11:34,476 --> 00:11:35,505 [speaker_2]
+Que ha acabado tal.
+
+00:11:35,516 --> 00:11:36,576 [speaker_0]
+Que está haciendo el experimento.
+
+00:11:36,616 --> 00:11:36,756 [speaker_2]
+Sí.
+
+00:11:36,776 --> 00:11:39,816 [speaker_0]
+Que la prueba aquí es... Me acuerdo.
+
+00:11:39,836 --> 00:11:42,856 [speaker_2]
+Hostia, tío, pues me voy a instalar lo de la barra de progreso, porque eso es la polla.
+
+00:11:42,866 --> 00:11:43,476 [speaker_0]
+Tal.
+
+00:11:43,516 --> 00:11:46,886 [speaker_2]
+Cuando he hecho simulaciones digo: "Qué polla". No sé si se ha quedado pillado, qué pollas pasó.
+
+00:11:46,896 --> 00:11:48,966 [speaker_0]
+Claro, justo. Me suelo-- [carraspeo] la barra está muy bien.
+
+00:11:48,996 --> 00:11:50,016 [speaker_2]
+Qué bueno.
+
+00:11:50,056 --> 00:12:12,908 [speaker_0]
+Lo de la simulación se basa, eh-- yo he usado, eh, Python como para lo que son las, eh,
+los menús y tal, pero para la simulación como tal,
+
+00:12:13,008 --> 00:12:13,368 [speaker_2]
+Ajá.
+
+00:12:13,408 --> 00:12:16,958 [speaker_0]
+Lo que pasa es que no tienes instalada la extensión...
+
+00:12:16,968 --> 00:12:17,908 [speaker_2]
+Paralelo o algo.
+
+00:12:17,928 --> 00:12:21,388 [speaker_0]
+Claro, como para parsearlo. Por eso te sale como todo blanco-
+
+00:12:21,548 --> 00:12:21,608 [speaker_2]
+Sí
+
+00:12:21,648 --> 00:12:24,948 [speaker_0]
+...como si fuese texto normal. Eso yo te diría igual te lo instalaras.
+
+00:12:25,088 --> 00:12:25,628 [speaker_2]
+Vale.
+
+00:12:25,648 --> 00:12:39,798 [speaker_0]
+Porque si no aquí esto es un lío. Eh, esto es un shader, ¿vale? Básicamente.
+Esto lo que hace es que se ejecuta en todos los píxeles de tu ventana. O sea,
+
+00:12:39,808 --> 00:12:40,368 [speaker_2]
+Ajá.
+
+00:12:40,388 --> 00:12:49,908 [speaker_0]
+Bueno, realmente no sé si es esta ventana en la que se ejecuta, pero bueno, en la textu--
+[chasquido de lengua] o sea, tú le pasas como una textura y estos--
+
+00:12:49,968 --> 00:12:50,397 [speaker_2]
+Vale.
+
+00:12:50,428 --> 00:12:50,768 [speaker_0]
+La gracia-
+
+00:12:50,778 --> 00:12:52,418 [speaker_2]
+¿Cada píxel era la discretización de una función?
+
+00:12:52,448 --> 00:12:53,658 [speaker_0]
+No, no, no, píxel.
+
+00:12:53,708 --> 00:12:54,558 [speaker_2]
+Hostias, vale.
+
+00:12:54,558 --> 00:13:03,768 [speaker_0]
+O sea, píxel de la textura. O sea, si tu-- quiero decir,
+si tu textura es de quinientos por quinientos, bueno, justo ese número no es correcto,
+
+00:13:03,778 --> 00:13:03,818 [speaker_2]
+Hostia.
+
+00:13:03,818 --> 00:13:13,848 [speaker_0]
+Si tu textura es de mil por mil, ¿vale? Eh, píxeles y tus cuadrados son de-- tu malla, por ejemplo,
+de cuadrados es de quinientos por quinientos-
+
+00:13:14,188 --> 00:13:14,298 [speaker_2]
+Dígales
+
+00:13:14,328 --> 00:13:16,168 [speaker_0]
+...cada cuadrado son cuatro píxeles.
+
+00:13:16,188 --> 00:13:16,508 [speaker_2]
+Sí.
+
+00:13:16,518 --> 00:13:17,328 [speaker_0]
+¿Vale?
+
+00:13:17,368 --> 00:13:18,927 [speaker_2]
+Vale.
+
+00:13:18,968 --> 00:13:19,128 [speaker_0]
+Entonces-
+
+00:13:19,138 --> 00:13:21,008 [speaker_2]
+Aunque ahí eran como rectángulos o...
+
+00:13:21,018 --> 00:13:23,098 [speaker_0]
+Bueno, eran como rectángulos porque esto no es un rec-- o sea-
+
+00:13:23,208 --> 00:13:23,408 [speaker_2]
+Estaba-
+
+00:13:23,418 --> 00:13:28,608 [speaker_0]
+...era un cuadrado y esto es un rectángulo. Entonces, mm, ¿sabes? Si lo pones en grande se ve raro.
+O sea, tipo-
+
+00:13:28,628 --> 00:13:28,718 [speaker_2]
+Vale
+
+00:13:29,308 --> 00:13:35,048 [speaker_0]
+...la ventana esta que yo estaba creando de mil doscientos por ochocientos es un rectángulo y yo
+estaba poniendo un cuadrado dentro de un rectángulo, entonces se veía-
+
+00:13:35,128 --> 00:13:35,288 [speaker_2]
+Ah
+
+00:13:35,848 --> 00:13:36,468 [speaker_0]
+...raro.
+
+00:13:36,508 --> 00:13:37,748 [speaker_2]
+Vale, entiendo, entiendo.
+
+00:13:37,848 --> 00:13:41,248 [speaker_0]
+Eh, entonces, esto se ejecuta en cada píxel.
+
+00:13:41,268 --> 00:13:44,788 [speaker_2]
+Hostia, vale. Y entonces, ¿cada PNG, cada píxel del PNG?
+
+00:13:44,888 --> 00:13:50,918 [speaker_0]
+Cada píx-- por qué se ejecuta en cada píxel, porque así aprovechas la gráfica.
+La gráfica tiene miles de núcl-- de hilos.
+
+00:13:51,028 --> 00:13:51,378 [speaker_2]
+Ah.
+
+00:13:51,388 --> 00:13:55,228 [speaker_0]
+Entonces, puede ejecutar como mucho más rápido, el rendimiento es muchísimo más alto.
+
+00:13:55,288 --> 00:13:55,868 [speaker_2]
+Hostias.
+
+00:13:55,888 --> 00:14:06,808 [speaker_0]
+Por eso lo hice, porque si no, con una-- porque al principio lo hice solo con la CPU,
+pero con la CPU, cuando la gra-- subía el grid, en vez de quinientos por quinientos a cien por cien,
+
+00:14:06,818 --> 00:14:07,948 [speaker_2]
+¿El grid?
+
+00:14:08,048 --> 00:14:14,138 [speaker_0]
+Eh, el, el, o sea, el tamaño, el tamaño este, en plan quinientos por quinientos.
+
+00:14:14,487 --> 00:14:15,408 [speaker_2]
+Ajá.
+
+00:14:15,428 --> 00:14:18,968 [speaker_0]
+Cuando ponías esto a cien por cien con la CPU, petaba, o sea, iba too lento.
+
+00:14:19,028 --> 00:14:19,038 [speaker_2]
+Hostia.
+
+00:14:19,038 --> 00:14:22,658 [speaker_0]
+En cambio, aquí a quinientos por quinientos va perfecto y lo puedo subir más si quiero, o sea...
+
+00:14:22,668 --> 00:14:23,448 [speaker_2]
+Qué guapo.
+
+00:14:23,468 --> 00:14:45,028 [speaker_0]
+Claro. Entonces, tú aquí, si te fijas en la lógica, eh, vas a tener aquí,
+esta es la lógica básicamente de if, si está bloqueada-- ah, bueno, perdón,
+
+00:14:45,048 --> 00:14:45,268 [speaker_2]
+Ah.
+
+00:14:45,277 --> 00:15:21,868 [speaker_0]
+[carraspeo] Entonces, yo lo que hago, siempre uso el canal rojo como voltaje, por así decirlo,
+o sea, el canal rojo como indicador de activo o inactivo. En este caso es binario, o sea,
+
+00:15:21,908 --> 00:15:22,277 [speaker_2]
+Ajá.
+
+00:15:22,308 --> 00:15:29,838 [speaker_0]
+Y entonces, el V del píxel va a ser el canal rojo, el, la boolean, ¿no? El...
+
+00:15:29,868 --> 00:15:31,497 [speaker_2]
+Sí, el binario, el...
+
+00:15:31,508 --> 00:15:42,828 [speaker_0]
+Sí, binario de bloqueado o no, va a ser el canal azul. Entonces,
+si el canal azul está a más de cero con cinco, o sea, que está activado,
+
+00:15:42,848 --> 00:15:45,198 [speaker_2]
+Pero ahí la has definido como entero, ¿no? O no.
+
+00:15:45,208 --> 00:15:45,938 [speaker_0]
+No, float.
+
+00:15:45,938 --> 00:15:46,308 [speaker_2]
+¿Float qué era?
+
+00:15:46,578 --> 00:15:47,808 [speaker_0]
+Eh, decimal.
+
+00:15:47,818 --> 00:15:51,458 [speaker_2]
+Ah, joder. O sea, es booleana, pero usas un decimal.
+
+00:15:51,488 --> 00:16:02,118 [speaker_0]
+Sí, porque es de cero a uno. La--
+y la cosa es que como no estoy totalmente seguro de temas de coma flotante y tal,
+
+00:16:02,128 --> 00:16:03,978 [speaker_2]
+Y te quitas la opción, sí.
+
+00:16:03,988 --> 00:16:06,878 [speaker_0]
+O sea, podía ponerlo como esto, como un bool y tal, pero...
+
+00:16:06,908 --> 00:16:08,198 [speaker_2]
+Tampoco va a optimizar mucho, seguro.
+
+00:16:08,228 --> 00:16:11,808 [speaker_0]
+Claro. Y aparte porque... Bueno, sí, eso, es que tampoco...
+
+00:16:11,818 --> 00:16:12,168 [speaker_2]
+Sí.
+
+00:16:12,188 --> 00:16:29,828 [speaker_0]
+Me da un poco igual. Eh, bueno, aquí pongo la lógica general,
+que es básicamente si V es igual a uno, excitado, si V es igual a cero, reposo y si cero tal,
+
+00:16:29,908 --> 00:16:31,388 [speaker_2]
+Ajá.
+
+00:16:31,488 --> 00:16:46,068 [speaker_0]
+Eh, si V es mayor que cero, lo que-- el decay básicamente es como cuánto debe caer, ¿vale? Eh,
+si te fijas, aquí está escrito refractario,
+
+00:16:46,078 --> 00:16:46,468 [speaker_2]
+Ese periodo
+
+00:16:46,488 --> 00:16:56,408 [speaker_0]
+...refractario, claro. Pues el nuevo voltaje va a ser el, el antiguo menos el decay, obviamente.
+Entonces, obviamente, por si acaso, si el nuevo es menor que cero, pues cero y ya está, ¿sabes?
+
+00:16:56,728 --> 00:16:57,568 [speaker_2]
+No es la die.
+
+00:16:57,588 --> 00:17:05,128 [speaker_0]
+Claro. Ahora, si está en reposo, porque aquí habíamos dicho que V era mayor que cero,
+entonces tenía que estar ya en refractario.
+
+00:17:05,248 --> 00:17:05,628 [speaker_2]
+Sí.
+
+00:17:05,648 --> 00:17:53,388 [speaker_0]
+Bueno, estaba en excitado, pero sabes, lo tienes que pasar ya a refractario. Entonces,
+ahora lo que te interesa es, eh, cuando está en reposo. Cuando está en reposo, eh, tienes--
+
+00:17:53,488 --> 00:17:54,128 [speaker_2]
+Ajá.
+
+00:17:54,168 --> 00:18:18,836 [speaker_0]
+Claro. Entonces, yo aquí lo paso como una variable que se llama--
+U siempre es porque viene de uniform, que uniform es lo que pasa aquí. Si te fijas,
+
+00:18:18,856 --> 00:18:19,276 [speaker_3]
+Mhm.
+
+00:18:19,296 --> 00:18:32,196 [speaker_0]
+Entonces,
+tú coges como el número de vecinos que tienes excitados y aquí ya siempre nosotros usamos algo
+
+00:18:32,256 --> 00:18:32,496 [speaker_3]
+Ah, sí.
+
+00:18:32,536 --> 00:19:08,496 [speaker_0]
+Simplemente tal. Entonces,
+si el número de vecinos excitados es mayor que el umbral que le has puesto,
+
+00:19:08,616 --> 00:19:09,896 [speaker_3]
+O sea, ¿por qué hay dos V new?
+
+00:19:09,916 --> 00:19:21,036 [speaker_0]
+Claro, ahora, ahora te lo muestro. Eso, esto lo podría quitar, porque solo me interesa el,
+el canal azul. ¿Por qué lo he puesto? Pues no lo sé, la verdad es que no me acuerdo.
+
+00:19:21,056 --> 00:19:22,216 [speaker_3]
+Mhm.
+
+00:19:22,236 --> 00:19:26,826 [speaker_0]
+Y luego, el canal alfa, este, este es el canal alfa, que es lo de la opacidad, que si lo dejo a uno,
+porque [resopla]
+
+00:19:26,856 --> 00:19:27,316 [speaker_3]
+Sí
+
+00:19:27,326 --> 00:19:39,376 [speaker_0]
+...me da igual. Eh, ¿por qué digo que es irrelevante cómo son los colors?
+Porque estos son colores realmente. Entonces, esto debería verse, pues si no está bloqueada,
+
+00:19:39,756 --> 00:19:39,896 [speaker_3]
+Sí.
+
+00:19:41,296 --> 00:20:00,896 [speaker_0]
+Pero yo esto lo paso por un shader que se llama de display,
+que aquí coge el estado del píxel y si está activo, en vez de ponerlo de color rojo o rojo y verde,
+
+00:20:00,956 --> 00:20:01,276 [speaker_3]
+Ajá.
+
+00:20:01,296 --> 00:20:05,246 [speaker_0]
+Entonces, esto si quieres te lo puedes mirar, si quieres le puedes mirar la guía,
+que te lo explique, o sea.
+
+00:20:05,246 --> 00:20:05,576 [speaker_3]
+Sí.
+
+00:20:05,616 --> 00:21:02,236 [speaker_0]
+Es irrelevante, o sea, es un poco-- o sea, no, no, no veo que luego vayas a cambiar algo así.
+Entonces, esto luego es lo más como raro. Aquí pones básicamente la versión del shader.
+
+00:21:02,336 --> 00:21:03,236 [speaker_3]
+Ajá.
+
+00:21:03,316 --> 00:21:12,536 [speaker_0]
+Eh, si te fijas, ¿ves? Yo le he metido aquí, se-- el grid size, el valor, pues es ese, es ese valor.
+Y ya está, y esto se lo meto al shader. Entonces, eso lo puede interpretar.
+
+00:21:12,736 --> 00:21:13,316 [speaker_3]
+Vale.
+
+00:21:13,416 --> 00:21:18,946 [speaker_0]
+Eh, entonces, aquí tú le metes-- y claro, como es C más-- bueno, entre comillas, no es C++ ¿no?
+técnicamente, pero...
+
+00:21:18,956 --> 00:21:20,116 [speaker_3]
+Quizá lo compila más directo a-
+
+00:21:20,136 --> 00:21:32,116 [speaker_0]
+No, no, tienes que poner-- no, no, tienes que poner en plan lo que es. O sea,
+sampler 2D es la textura, que entonces le metes encima en el estado actual. Vec2, pues es un vector,
+
+00:21:32,136 --> 00:21:38,496 [speaker_3]
+Hostia, vale. Hasta ahora estaba bien. Pensaba que vec2 y vec4 y eso era, o sea,
+un nombre de variable.
+
+00:21:38,516 --> 00:21:41,476 [speaker_0]
+No, no, no. Vec2 es un vector de dos componentes.
+
+00:21:41,485 --> 00:21:41,526 [speaker_3]
+Hostia, vale, vale, vale.
+
+00:21:41,526 --> 00:22:19,356 [speaker_0]
+Vec3, uno de tres. Vec4, uno de cuatro. Claro, claro, claro. Eh, entonces,
+pues tienes que ponerle lo que es y tal. Y, y en verdad es que ya eso es todo. Entonces,
+
+00:22:19,416 --> 00:22:20,176 [speaker_3]
+Anda.
+
+00:22:20,216 --> 00:22:24,756 [speaker_0]
+Entonces, sí, mira, justo, ¿ves? Se queda gris cuando ya no está activado.
+
+00:22:24,775 --> 00:22:30,876 [speaker_3]
+Claro, porque-- ah, claro, ahora no lo había visto. En el otro que tú tienes, eh,
+cuando una vez se desactiva, puede volver a activarse luego.
+
+00:22:30,896 --> 00:22:32,076 [speaker_0]
+Claro, justo, por eso.
+
+00:22:32,096 --> 00:22:32,836 [speaker_3]
+Vale, vale, vale.
+
+00:22:32,856 --> 00:22:46,996 [speaker_0]
+Entonces, te diría que le echaras un ojo, si eso, a, a este, que se llama el shader. Los shaders,
+como que se encargan de la lógica, siempre tienen el nombre de tal. O sea, la etiqueta,
+
+00:22:47,056 --> 00:22:47,975 [speaker_3]
+Ok.
+
+00:22:48,036 --> 00:23:08,356 [speaker_0]
+Entonces, s-- eh, te diría que o terminaras esto o simplemente aquí implementaras.
+Pues a mí que así se me ocurre así de primera mano, podrías implementar con el canal verde,
+
+00:23:08,376 --> 00:23:09,066 [speaker_3]
+Mhm.
+
+00:23:09,136 --> 00:23:27,796 [speaker_0]
+O que si, eh, si, o sea, que el estado inactivo y cuando ya se ha acabado como el estado, bueno,
+cuando ya ha pasado desde activo,
+
+00:23:27,856 --> 00:23:28,836 [speaker_3]
+Sí.
+
+00:23:28,916 --> 00:23:54,086 [speaker_0]
+Eh,
+podrías hacer que el estado inactivo y el estado como muerto después de haber pasado el refractario
+
+00:23:54,096 --> 00:23:55,116 [speaker_3]
+No interactúe, ¿no?
+
+00:23:55,276 --> 00:24:01,796 [speaker_0]
+Claro, o sea, puedes usar la lógica del color con: oye, si es-- si el color de este es este color,
+pues está muerto y no interactúa, ¿sabes?
+
+00:24:01,816 --> 00:24:02,416 [speaker_3]
+Vale.
+
+00:24:02,426 --> 00:24:15,576 [speaker_0]
+O otra, podrías activar después de que pase de, eh, acti-- o sea,
+después de que pase de inactivo a activo, que la célula, en vez de pasar a refractario o lo que sea,
+
+00:24:15,596 --> 00:24:15,726 [speaker_2]
+Ah.
+
+00:24:15,736 --> 00:24:17,876 [speaker_0]
+Y ya está. Entonces, ya está, se que-- y ya se queda como está.
+
+00:24:17,916 --> 00:24:18,976 [speaker_2]
+Hombre, yo creo que lo que hago-
+
+00:24:19,016 --> 00:24:19,126 [speaker_0]
+De nada
+
+00:24:19,136 --> 00:24:20,236 [speaker_2]
+...ya lo aprovecho-
+
+00:24:20,516 --> 00:24:21,756 [speaker_0]
+Claro
+
+00:24:21,796 --> 00:24:23,116 [speaker_2]
+...pa' no, pa' no tener que hacer un if.
+
+00:24:23,126 --> 00:24:30,386 [speaker_0]
+¿Y cómo podrías hacerlo también? O sea, qué-- eso ya, en plan, lo-- luego lo otro,
+creo recordar que la explicación ponía no sé qué del viento y tal, ¿no?-
+
+00:24:30,386 --> 00:24:30,386 [speaker_2]
+Sí
+
+00:24:30,386 --> 00:25:15,776 [speaker_0]
+...cosas así. Eh, ¿cómo podrías poner eso? Podrías pasar que esto, en vez de ser, eh, discreto, eh,
+discreto en el sentido de la lógica de activación, es discreta, o sea,
+
+00:25:15,836 --> 00:25:16,056 [speaker_2]
+Sí.
+
+00:25:16,076 --> 00:25:36,096 [speaker_0]
+Entonces, para lo del viento, lo que podrías hacer igual es que cada vecino, ¿no?, eh,
+lo que sume al potencial, porque en este caso ya es un continuo. Entonces,
+
+00:25:36,156 --> 00:25:37,596 [speaker_2]
+Sí, que el viento le ha llegado.
+
+00:25:37,636 --> 00:25:44,356 [speaker_0]
+No, no. Ahora veo. Si el potencial de esos vecinos suma lo suficiente,
+pues entonces ese pasa a activo, básicamente.
+
+00:25:44,436 --> 00:25:45,356 [speaker_2]
+Sí.
+
+00:25:45,376 --> 00:26:13,456 [speaker_0]
+Podrías hacer igual que, eh, si el viento va hacia, hacia el norte, ¿no?, por ejemplo, hacia arriba,
+pues puedes hacer igual, eh, hacer que el potencial del vecino de arriba, perdón,
+
+00:26:13,476 --> 00:26:15,126 [speaker_2]
+Crear gradientes ahí, ¿no? O...
+
+00:26:15,136 --> 00:26:16,296 [speaker_0]
+Claro, o sea, con constantes, tipo-
+
+00:26:16,316 --> 00:26:16,516 [speaker_2]
+Sí.
+
+00:26:17,196 --> 00:26:20,646 [speaker_0]
+Es que no tengo papel para decir lo que yo digo, pero... [ruido]
+
+00:26:20,646 --> 00:26:24,316 [speaker_2]
+Espera. [ruido] No sé qué es esto.
+
+00:26:24,356 --> 00:26:26,556 [speaker_0]
+No, no, si lo hago ya.
+
+00:26:26,616 --> 00:26:28,016 [speaker_2]
+No, aquí sirve, aquí sirve.
+
+00:26:28,036 --> 00:26:28,476 [speaker_0]
+Ah, bueno, vale.
+
+00:26:28,496 --> 00:26:30,316 [speaker_2]
+Sí, sí. Aquí te cabe, ¿no?
+
+00:26:30,356 --> 00:26:34,356 [speaker_0]
+Sí, sí, sí, de sobra. Creo que esto es, esto es tía, o sea, eso es tía, esto es tía.
+
+00:26:34,376 --> 00:26:35,276 [speaker_2]
+Sí, sí.
+
+00:26:35,416 --> 00:26:44,326 [speaker_0]
+Eh, en plan, ahí lo que digo es, tipo, pasar esto a un continuo, que pasar esto a un continuo.
+Entonces, lo que hacemos es bastante fácil. Es bastante fácil porque lo hice al principio,
+
+00:26:44,396 --> 00:26:49,536 [speaker_2]
+Ajá. O sea, pero espera, para que, para aclararme, ¿qué parte es discreta? Es la de el estado de-
+
+00:26:49,576 --> 00:26:58,656 [speaker_0]
+O sea, discreto en el sentido de que si esto tiene un número de vecinos activos. O sea,
+ahora mismo solo tienes tres estados: activo, inactivo, refractario. Punto.
+
+00:26:58,676 --> 00:27:02,156 [speaker_2]
+Vale, pero el refractario tiene como un-- varios-
+
+00:27:02,176 --> 00:27:02,436 [speaker_0]
+Sí, pero-
+
+00:27:02,446 --> 00:27:03,186 [speaker_2]
+...tipos de estados.
+
+00:27:03,196 --> 00:27:27,376 [speaker_0]
+No, no. Sí, sí, pero-- o sea, no, no, pero es-- tiene varios tiempos, pero en el sentido de que, eh,
+siempre está refractario. Es decir, no tiene una variable refractario que sea, mmm,
+
+00:27:27,436 --> 00:27:27,765 [speaker_2]
+En qué iteración
+
+00:27:27,776 --> 00:27:30,376 [speaker_0]
+...recientemente o está a punto de acabar, ¿no?
+
+00:27:30,396 --> 00:27:34,256 [speaker_2]
+Vale. Eso, pero el refractario, a nivel de-- físico en, en un bosque, pues sería-
+
+00:27:34,265 --> 00:27:34,656 [speaker_0]
+Interactúa
+
+00:27:34,716 --> 00:27:36,265 [speaker_2]
+...sería que se va quemando el árbol.
+
+00:27:36,276 --> 00:27:51,346 [speaker_0]
+Claro, está quemado. Y a lo mejor podrías poner que se ha que-- o sea,
+activo es que está quemándose, está incendiado.
+
+00:27:51,346 --> 00:27:51,346 [speaker_2]
+Vale.
+
+00:27:51,356 --> 00:27:56,716 [speaker_0]
+O podrías poner un refractario, que es lo que digo, de bloquearla, entonces es infinito,
+entonces ya está, está quemado y no interactúa.
+
+00:27:56,756 --> 00:27:56,966 [speaker_2]
+Vale.
+
+00:27:56,976 --> 00:27:59,456 [speaker_0]
+Eso está bien, eso es muy fácil de implementar.
+
+00:27:59,476 --> 00:27:59,526 [speaker_2]
+Vale, vale, vale.
+
+00:27:59,576 --> 00:28:11,156 [speaker_0]
+Lo que digo es, es para implementar lo del viento, ¿no? Tú tienes, imagínate, estos tres tal.
+Y tú estás fijándote en este y ponemos que el viento va hacia, hacia allá, el norte.
+
+00:28:11,236 --> 00:28:11,836 [speaker_2]
+Ajá.
+
+00:28:11,876 --> 00:28:35,666 [speaker_0]
+Tú lo que podrías poner es pasar esto a un continuo, entonces esto tendría V, I, J, esto tendría V,
+I, J más uno y esto V, I, J menos uno, ¿no? Eh, esto es un continuo. O sea, esto, yo lo que digo es,
+
+00:28:35,736 --> 00:28:36,366 [speaker_2]
+Vale, vale.
+
+00:28:36,376 --> 00:28:39,196 [speaker_0]
+Por ejemplo. O sea, por poner un valor, ¿eh? No tiene por qué ser ese.
+
+00:28:39,236 --> 00:28:40,316 [speaker_2]
+Sí.
+
+00:28:40,356 --> 00:28:59,896 [speaker_0]
+Yo lo que digo es, para que este se active, por ejemplo, eh, pues sus vecinos tienen que sumar,
+pues ponte que son también estos vecinos, ¿no? O sea, me da igual.
+
+00:28:59,916 --> 00:29:03,476 [speaker_2]
+O sea, la expresión del V es una función dependiente de los vecinos.
+
+00:29:03,496 --> 00:29:04,896 [speaker_0]
+Claro, claro. Sí, sí, justo.
+
+00:29:04,916 --> 00:29:05,266 [speaker_2]
+Vale.
+
+00:29:05,276 --> 00:29:05,706 [speaker_0]
+Claro, claro, claro.
+
+00:29:05,716 --> 00:29:07,566 [speaker_2]
+Sí, se podría añadir un factor o un-
+
+00:29:07,576 --> 00:29:08,186 [speaker_0]
+Entonces, claro, yo lo que digo-
+
+00:29:08,186 --> 00:29:08,956 [speaker_2]
+...una proporcionalidad de-
+
+00:29:08,996 --> 00:29:18,406 [speaker_0]
+Exacto, justo. O sea, tú puedes poner que los vecinos, aquí esto, al pasarlo al continuo,
+podrías ponerle una constante y que esa constante dependa, [inhalación] o sea, sea una matriz-
+
+00:29:18,406 --> 00:29:18,586 [speaker_2]
+Una dirección
+
+00:29:18,716 --> 00:29:21,896 [speaker_0]
+...¿sabes? Sea una matriz de, de tres por tres.
+
+00:29:21,996 --> 00:29:22,146 [speaker_2]
+Ajá.
+
+00:29:22,156 --> 00:29:24,796 [speaker_0]
+Bueno, depende cuántas direcciones del viento quieras meter, ¿no? Pero...
+
+00:29:24,806 --> 00:29:28,256 [speaker_2]
+Yo creo que en principio en, en 2D-
+
+00:29:28,296 --> 00:29:31,336 [speaker_0]
+O un vector, o sea, un vector de cuatro tal, o sea, norte, sur, este, oeste.
+
+00:29:31,396 --> 00:29:31,576 [speaker_2]
+Sí.
+
+00:29:31,616 --> 00:29:47,756 [speaker_0]
+Y cada uno sea como la constante de proporcionalidad. Y que si el viento va hacia el norte,
+pues que lo que tengas es que se ve beneficiada esta transmisión y esta transmisión,
+
+00:29:47,816 --> 00:29:48,206 [speaker_2]
+Okey.
+
+00:29:48,236 --> 00:29:55,946 [speaker_0]
+Entonces, lo que vas a ver, yo creo, es que ajustando las constantes y tal, probando, obviamente,
+no te va a salir a la primera, yo creo,
+
+00:29:55,976 --> 00:29:57,176 [speaker_2]
+Sí. Qué guapo.
+
+00:29:57,196 --> 00:29:58,206 [speaker_0]
+Entonces, lo que...
+
+00:29:58,216 --> 00:30:00,416 [speaker_2]
+Claro, y al final tú ya lo estás tratando-
+
+00:30:00,436 --> 00:30:01,846 [speaker_0]
+Me tengo que pillar, ya está clase.
+
+00:30:01,896 --> 00:30:02,676 [speaker_2]
+Hay gente.
+
+00:30:02,716 --> 00:30:03,746 [speaker_0]
+Sí, o sea, van a venir clase aquí.
+
+00:30:03,746 --> 00:30:05,816 [speaker_2]
+Lo estás tratando como un pseudocontinuo, ¿no?
+
+00:30:05,906 --> 00:30:06,625 [speaker_0]
+Claro, justo, o sea-
+
+00:30:06,636 --> 00:30:17,316 [speaker_2]
+Porque tú lo que hacías, sí que tenías una variable continua, que es lo que me--
+lo que te he preguntado al principio. El V que tú, que tú usas aquí es continuo.
+
+00:30:17,356 --> 00:30:20,776 [speaker_0]
+Claro, o sea, es continuo, en plan, es continuo en el sentido de que-
+
+00:30:20,796 --> 00:30:21,635 [speaker_2]
+A nivel numérico, digo
+
+00:30:21,656 --> 00:30:24,396 [speaker_0]
+...a nivel numérico es continuo, pero a nivel de estado no lo es, porque-
+
+00:30:24,416 --> 00:30:24,936 [speaker_2]
+Sí
+
+00:30:25,080 --> 00:30:31,259 [speaker_4]
+Yo lo que estoy haciendo normalmente simplemente es si V es uno, o bueno, cero coma-- o sea,
+mayor de cero coma nueve-
+
+00:30:31,360 --> 00:30:32,560 [speaker_5]
+Discriminar dos cosas.
+
+00:30:32,600 --> 00:30:52,900 [speaker_4]
+Claro, si V sub uno, pues está activo. Si V es cero está inactivo,
+y si V es cualquier valor entre medias, es refractario.
+
+00:30:52,980 --> 00:30:53,420 [speaker_5]
+Vale, vale.
+
+00:30:53,460 --> 00:30:57,870 [speaker_4]
+Tendré uno, cero con nueve, cero-- pero si es cero con uno, cero con ocho, cero, hasta cero con uno.
+
+00:30:57,960 --> 00:30:58,190 [speaker_5]
+Ajá.
+
+00:30:58,220 --> 00:31:02,780 [speaker_4]
+Tienen las mismas propiedades. O sea, no, no tiene ninguna diferencia, eh, que comportamental,
+esa es la cosa.
+
+00:31:02,820 --> 00:31:07,370 [speaker_5]
+Vale. O sea que eso entonces no es lo que mide si V es mayor que cero con cinco.
+
+00:31:07,400 --> 00:31:09,520 [speaker_4]
+No, eso es la-- está bloqueada.
+
+00:31:09,640 --> 00:31:10,610 [speaker_5]
+Vale. Vale, vale.
+
+00:31:10,720 --> 00:31:23,000 [speaker_4]
+Está bloqueada. O sea, eso sí, eso, eso lo podría cambiar a un verdadero falso, simplemente. O sea,
+sería muy fácil. Pero uno, me la-- me la suda ya, la verdad. O sea,
+
+00:31:23,010 --> 00:31:24,970 [speaker_5]
+Ya. ¿Has cogido tu disco, sí? Vale.
+
+00:31:24,970 --> 00:31:25,170 [speaker_4]
+No, no.
+
+00:31:25,800 --> 00:31:29,410 [speaker_5]
+Se me había olvidado.
+
+00:31:29,410 --> 00:31:37,880 [speaker_4]
+O sea, entonces eso. Entonces, o sea, por eso te digo que cambiarlo de-- o sea,
+es cambiar el parámetro de lo del periodo refractario y si quieres pasarlo al continuo para poder
+
+00:31:37,920 --> 00:31:41,230 [speaker_5]
+Sí, sí. Y luego creo un PNG con una orografía que le salga de los cojones.
+
+00:31:41,260 --> 00:31:51,979 [speaker_4]
+Sí, justo eso, procesarla y tal, que bueno, igual es un poquillo más complicado.
+Tendrías que usar el-- una librería que se llama Lean4,
+
+00:31:52,060 --> 00:31:52,260 [speaker_5]
+Sí.
+
+00:31:52,320 --> 00:32:00,810 [speaker_4]
+Eso es una imagen en tiempo real y la he procesado. Igual puedes leerte ahí el código del,
+del procesamiento de la diferencia, igual te sirve de ejemplo. Pero claro, claro.
+
+00:32:00,840 --> 00:32:04,130 [speaker_5]
+Qué pasada. La verdad que está todo guapo, el TFG está...
+
+00:32:04,220 --> 00:32:04,310 [speaker_4]
+[risas]
+
+00:32:04,310 --> 00:32:06,940 [speaker_5]
+Está guay. Muchas gracias, bro.
+
+00:32:06,960 --> 00:32:09,690 [speaker_4]
+Entonces, o sea, ahí también el código ya lo tienes, tipo...
+
+00:32:09,720 --> 00:32:11,340 [speaker_5]
+Sí.
+
+00:32:11,350 --> 00:32:16,810 [speaker_4]
+Y si ahora no entiendas, pues me lo puedes preguntar.
+O si no también podemos puntalar ahí a cómo funciona, o sea
+
+00:32:17,680 --> 00:32:31,860 [speaker_5]
+[ruido] Qué pasada. Además, tío, sobre todo también el nivel de optimizar el curro,
+cómo el environment y tal, eh, he aprendido también un montón.
+
+00:32:32,300 --> 00:32:32,330 [speaker_4]
+Todo.
+
+00:32:32,360 --> 00:32:35,729 [speaker_5]
+Lo de el Conda, el Miniconda, me voy a poner a mirarlo también.
+
+00:32:35,740 --> 00:32:38,160 [speaker_4]
+Ya, ya tenemos-
+
+00:32:38,560 --> 00:32:49,489 [speaker_5]
+Llevamos... [sonido agudo] Para esto, para esto, esperad un momento. Sí, no, no pasa nada, pero...
+No, estoy mirando- No, no, cargar el móvil no.
+
+00:32:51,260 --> 00:32:52,820 [speaker_4]
+No está esto bien.
+
+00:32:53,400 --> 00:32:55,580 [speaker_5]
+No sabes lo enganchado que estaba ahí.
+
+00:32:57,160 --> 00:32:59,460 [speaker_4]
+Estaba ahí sacando energía o algo.
+
+00:33:00,260 --> 00:33:00,970 [speaker_5]
+No, es que ha quedado-
+
+00:33:00,980 --> 00:33:08,350 [speaker_4]
+No, le está exp-- le está explicando todo lo que usa para hacer, qué técnicas. O sea,
+de estadística. Eso que te he contado a ti.
+
+00:33:08,400 --> 00:33:15,040 [speaker_5]
+Y los hemos quitado. O sea, que no se le pide biológico, igual, o sea... Es lo mismo.
+
+00:33:15,060 --> 00:33:16,429 [speaker_4]
+Vais a pedir negociar.
+
+00:33:16,460 --> 00:33:18,880 [speaker_5]
+No, no, que tenemos el de la academia, que es el mismo.
+
+00:33:18,920 --> 00:33:19,070 [speaker_4]
+Ah.
+
+00:33:19,070 --> 00:33:27,840 [speaker_5]
+Ah, pues ya está. Tenéis, tenéis que contentar a Tina. No, Laia es muy buena madre. O sea...
+Es más bueno es. Pero esto más malo es.
+
+00:33:27,920 --> 00:33:29,160 [speaker_4]
+Tienen buen history que hay.
+
+00:33:29,180 --> 00:33:31,380 [speaker_5]
+Igual, si eso, eso lo he presentado.
+
+00:33:31,400 --> 00:33:33,720 [speaker_4]
+Un año por seis, grábame.
+
+00:33:33,760 --> 00:33:36,650 [speaker_5]
+Sí, sí. Hoy no tengo prisa.
+
+00:33:36,650 --> 00:33:37,110 [speaker_4]
+Ah, no te fuiste.
+
+00:33:37,110 --> 00:33:38,930 [speaker_5]
+Porque luego voy a un evento y tal.
+
+00:33:39,240 --> 00:33:39,250 [speaker_4]
+Vale.
+
+00:33:39,280 --> 00:33:55,910 [speaker_5]
+Cada vez que anuncias como la familia que se pasa donde no sé quién llega al campus, ya... Tira,
+tira, entra. [risas] Te traigo cartas, letras.
+
+00:33:56,460 --> 00:33:56,510 [speaker_4]
+No, no, no.
+
+00:33:56,510 --> 00:34:03,930 [speaker_5]
+No, no, no, sigue, sigue.
+
+00:34:03,930 --> 00:34:06,340 [speaker_4]
+Un momento, un momento.
+
+00:34:06,350 --> 00:34:18,610 [speaker_5]
+No, vale, vale. Sabes que va a venir. Vale, vale. Me falta el aire. Ayer me puse aquí.
+Me quedé sin sitio, qué cabrón la tarde. Me hizo lo mismo, me hizo lo mismo el... Tú no viniste,
+
+00:34:18,610 --> 00:34:19,890 [speaker_4]
+Estaba por ahí y luego ahí.
+
+00:34:19,960 --> 00:34:20,880 [speaker_5]
+Vale. [risas]
+
+00:34:21,900 --> 00:34:24,010 [speaker_4]
+Qué cabrón. La polla sí, macho.
+
+00:34:24,010 --> 00:34:30,700 [speaker_5]
+[risas] Iba a llegar tarde, ¿eh?
+
+00:34:30,740 --> 00:34:31,850 [speaker_4]
+Sí, sí, normal.
+
+00:34:31,850 --> 00:34:33,360 [speaker_5]
+¿Qué tal?
+
+00:34:33,380 --> 00:34:34,660 [speaker_4]
+Sí, bien.
+
+00:34:35,480 --> 00:34:39,720 [speaker_5]
+Hoy como voy a estar haciendo el TFG y tal, un momento.
+
+00:34:39,740 --> 00:34:41,010 [speaker_4]
+Hombre...
+
+00:34:41,010 --> 00:34:41,010 [speaker_5]
+Madre mía.
+
+00:34:41,060 --> 00:34:42,320 [speaker_4]
+Hay que posicionarse.
+
+00:34:42,360 --> 00:35:26,360 [speaker_5]
+Hay que posicionarse. Además, que aquí hay, hay triunfos también. Pero no se nota.
+Pero hoy estoy yo aquí. Hola. ¿Mario?
+
+00:35:26,440 --> 00:35:27,140 [speaker_6]
+Sí.
+
+00:35:27,860 --> 00:35:33,400 [speaker_5]
+¿Has probado el cinco y lo prefieres dejar para otra ocasión?
+
+00:35:33,460 --> 00:35:35,470 [speaker_6]
+Eh, sí, pero el dos punto uno.
+
+00:35:35,840 --> 00:35:37,450 [speaker_5]
+Pero no lo habéis hecho en dos punto uno.
+
+00:35:37,520 --> 00:35:38,370 [speaker_6]
+Sí, sí, pero...
+
+00:35:38,940 --> 00:35:38,950 [speaker_5]
+Ya.
+
+00:35:39,040 --> 00:35:51,520 [speaker_6]
+El dos punto uno no ha corrido, ¿no? Y todavía, todavía no ha corrido para correr quien es.
+Entonces, a veces el dos punto uno es un poco... Vale.
+
+00:35:51,780 --> 00:35:52,460 [speaker_5]
+Entiendo.
+
+00:35:52,470 --> 00:36:01,350 [speaker_6]
+Me he confundido porque otra cosa, pero el problema es que hay materia... No, claro.
+El tema de la materia que surge y puede...
+
+00:36:01,460 --> 00:36:13,980 [speaker_4]
+No, no, no.
+
+00:36:14,960 --> 00:36:23,220 [speaker_5]
+¿Quién? Que aquí va mi amigo Jorge. Está reservado para Jorge también.
+
+00:36:23,300 --> 00:36:24,540 [speaker_4]
+Ah, Jorge va en los dos.
+
+00:36:24,720 --> 00:36:28,350 [speaker_5]
+Sí. Me va a levantar, ya lo verás. Me va a levantar.
+
+00:36:30,160 --> 00:36:46,920 [speaker_6]
+He subido en avisos de la asignatura, eh, la lista de espera para corregir el ejercicio.
+Iré actualizando, pero iré actualizando si se me ocurre algo más.
+
+00:36:49,640 --> 00:36:56,090 [speaker_5]
+Se te ha jodido, se te ha jodido. [risas]
+
+00:36:57,980 --> 00:36:58,980 [speaker_6]
+¿Cuándo vienes el lunes?
+
+00:36:58,990 --> 00:37:06,660 [speaker_5]
+El lunes que viene. Es el que fue a The Wild Project, ¿no? Ha, ha ido otro tío que sigo,
+un periodista de El Mundo, y le ha hecho una entrevista también.
+
+00:37:06,670 --> 00:37:07,340 [speaker_6]
+¿Sí?
+
+00:37:07,380 --> 00:37:16,300 [speaker_5]
+Se la he hecho para ese partido. Ojo.

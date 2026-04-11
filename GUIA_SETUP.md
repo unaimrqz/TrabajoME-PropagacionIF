@@ -110,15 +110,15 @@ C:\Users\gshad\anaconda3\Scripts\conda.exe init powershell
 
 y reinicia VS Code.
 
-### Ejecutar simulaciones
+### Ejecutar simulacion base (PySide + motor de shaders)
 
-Ejemplo (Juego de la Vida versión moderna):
+Ejemplo:
 
 ```powershell
-python .\TFG-automatas-celulares\juego_de_la_vida\GPU_modern\main_gpu_modern.py
+python .\simulations\IF\main.py
 ```
 
-Para Greenberg-Hastings y Fitzhugh-Nagumo, usa sus `main_gpu_modern.py` equivalentes.
+Este ejecutable carga la ventana PySide y el motor base de shaders para la malla.
 
 ---
 
@@ -227,4 +227,58 @@ Recomendación:
 6. `git push`.
 
 Consejo clave: commits pequeños y frecuentes > commits gigantes cada varios días.
+
+---
+
+## 9) Formato de mapas custom (Google Earth / QGIS / imágenes propias)
+
+La opción **"Cargar Mapa Externo..."** de la interfaz acepta `*.png`, `*.jpg` y `*.jpeg`.
+
+El motor siempre hace estos pasos al cargar tu archivo:
+
+1. Convierte la imagen a **RGBA**.
+2. Redimensiona al tamaño de simulación (actualmente `500x500`) con interpolación bilineal.
+3. Aplica un **flip vertical** interno (no debes voltear la imagen manualmente antes).
+
+### Semántica física por canales (RGBA)
+
+Cada píxel es una celda del autómata:
+
+- **R (rojo) -> fuego inicial**
+	- `0.0`: sin fuego
+	- `1.0`: celda encendida al inicio
+- **G (verde) -> elevación**
+	- `0.0` a `1.0`: altura normalizada (topografía)
+- **B (azul) -> combustible / barrera**
+	- `0.0`: barrera no combustible (agua, asfalto, cortafuegos)
+	- `0.2`: combustible bajo (pasto/humedal)
+	- `0.5`: combustible medio (matorral)
+	- `0.8`: combustible alto (pinar)
+	- `1.0`: combustible muy alto
+- **A (alpha) -> reservado**
+	- Se recomienda `1.0` en toda la imagen.
+
+### Recomendación para preparación desde Google Earth
+
+Google Earth no exporta directamente un PNG con significado RGBA físico, así que el flujo recomendado es:
+
+1. Obtener base geográfica (captura o raster exportado).
+2. Crear capa de elevación normalizada para canal **G**.
+3. Crear capa de combustible categórico para canal **B** usando los valores anteriores.
+4. Definir igniciones iniciales en canal **R** (normalmente todo a `0.0`, salvo focos concretos).
+5. Exportar como **PNG** (mejor que JPG para no introducir artefactos con compresión).
+
+### Requisitos prácticos para que funcione bien
+
+- La imagen puede ser de cualquier resolución, pero `500x500` evita reescalados.
+- Evita JPG si quieres reproducibilidad física fina (la compresión altera canales).
+- No uses paletas indexadas; exporta como color real.
+- Si el resultado sale "invertido" verticalmente, revisa la fuente: el simulador ya aplica flip interno.
+
+### Carga en la app
+
+1. Abrir la simulación.
+2. Pulsar **Cargar Mapa Externo...**.
+3. Elegir el PNG/JPG.
+4. El mapa sustituye al preset actual y se reinicia el estado.
 
