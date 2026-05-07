@@ -46,6 +46,7 @@ class MainWindow(QtWidgets.QMainWindow): # MainWindow hereda de QMainWindow, que
                 "La Pedriza (Montaña)",
                 "Mar de Ontígola (Humedal)",
                 "Rivas (IUF)",
+                "Sierra de Guadarrama (Real)",
             ]
         )
         self.map_combo.currentIndexChanged.connect(self.on_map_preset_changed) # currentIndexChanged es una señal que se emite cuando el índice seleccionado en el QComboBox cambia, se conecta a un slot (función) que actualiza la simulación con los parámetros predefinidos para cada mapa
@@ -57,6 +58,7 @@ class MainWindow(QtWidgets.QMainWindow): # MainWindow hereda de QMainWindow, que
                 "Modo SIR (Fuego y Vegetación)",
                 "Modo Orografía (Blanco y Negro)",
                 "Modo Combustible (Azul)",
+                "Modo Satélite / Raster",
             ]
         )
         self.view_combo.currentIndexChanged.connect(self.on_view_mode_changed) # currentIndexChanged es una señal que se emite cuando el índice seleccionado en el QComboBox cambia, se conecta a un slot (función) que actualiza la simulación con los parámetros predefinidos para cada modo de vista
@@ -293,6 +295,7 @@ class MainWindow(QtWidgets.QMainWindow): # MainWindow hereda de QMainWindow, que
             1: {"wind": 15, "beta": 40, "gamma": 20, "pavesas": 0},  # Pedriza
             2: {"wind": 10, "beta": 35, "gamma": 80, "pavesas": 0},  # Ontigola
             3: {"wind": 20, "beta": 45, "gamma": 30, "pavesas": 0},  # Rivas
+            4: {"wind": 15, "beta": 40, "gamma": 20, "pavesas": 0},  # Guadarrama real
         }
         preset = presets.get(index)
         if preset is None:
@@ -302,7 +305,30 @@ class MainWindow(QtWidgets.QMainWindow): # MainWindow hereda de QMainWindow, que
         self.beta_slider.setValue(preset["beta"])
         self.gamma_slider.setValue(preset["gamma"])
         self.pavesas_slider.setValue(preset["pavesas"])
-        self.grid_widget.load_map(self.map_combo.currentText())
+        selected_map = self.map_combo.currentText()
+        self.grid_widget.load_map(selected_map)
+        self._adapt_window_to_current_grid()
+
+    def _adapt_window_to_current_grid(self):
+        if self.isMaximized() or self.isFullScreen():
+            return
+
+        grid_w = max(1, int(self.grid_widget.config.grid_width))
+        grid_h = max(1, int(self.grid_widget.config.grid_height))
+        map_ratio = grid_w / grid_h
+
+        # Aproximación del layout 4:1 (simulación:panel).
+        target_total_width = int(self.height() * map_ratio * 1.25)
+        min_reasonable_width = 900
+        target_total_width = max(target_total_width, min_reasonable_width)
+
+        screen = self.screen()
+        if screen is not None:
+            max_width = screen.availableGeometry().width()
+            target_total_width = min(target_total_width, max_width)
+
+        if abs(self.width() - target_total_width) > 8:
+            self.resize(target_total_width, self.height())
 
     @QtCore.Slot()
     def on_fire_extinguished(self):
@@ -324,3 +350,4 @@ class MainWindow(QtWidgets.QMainWindow): # MainWindow hereda de QMainWindow, que
             return
 
         self.grid_widget.load_custom_map(file_path)
+        self._adapt_window_to_current_grid()

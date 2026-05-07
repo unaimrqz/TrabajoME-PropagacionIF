@@ -18,6 +18,12 @@ from PySide6 import QtCore                                  # para señales, slo
 from PySide6.QtOpenGLWidgets import QOpenGLWidget           # QOpenGLWidget es un widget de Qt que nos permite renderizar gráficos usando OpenGL. Es la base sobre la que construiremos toda la simulación visual del fuego, permitiéndonos aprovechar la potencia de la GPU para simular y renderizar el comportamiento del fuego en tiempo real.
 
 from config import SimulationConfig                         # importamos la configuración de la simulación, que nos proporciona parámetros como el tamaño de la cuadrícula, las tasas de infección y recuperación, etc. Esta configuración se utilizará para inicializar el estado de la simulación y para controlar su comportamiento a lo largo del tiempo.
+from map_generator import (
+    generate_ontigola,
+    generate_pedriza,
+    generate_rivas,
+    generate_valdeiglesias,
+)
 
 
 def load_shader_source(shader_file: str) -> str: 
@@ -29,10 +35,15 @@ def load_shader_source(shader_file: str) -> str:
 class GridWidget(QOpenGLWidget):
     metrics_updated = QtCore.Signal(float, float, float)
     fire_extinguished = QtCore.Signal()
+    REAL_MAP_FILES = {"guadarrama1_real.png", "guadarrama_real.png"}
 
     def __init__(self, config: SimulationConfig): # En el constructor inicializamos todas las variables necesarias para la simulación, como los programas de shaders, los VAOs, las texturas, los FBOs, y otros parámetros relacionados con el viento y la visualización. También configuramos un temporizador para actualizar las métricas de SIR cada segundo.
         super().__init__()
         self.config = config
+        self._artificial_grid_size = (
+            max(1, int(config.grid_width)),
+            max(1, int(config.grid_height)),
+        )
 
         self.ctx = None
         self.display_program = None
@@ -47,6 +58,7 @@ class GridWidget(QOpenGLWidget):
 
         self.fbos = []
         self.textures = []
+        self.bg_texture = None
         self.current_texture_idx = 0
         self.frame_count = 0
         self.base_wind_angle = 0.0
@@ -64,6 +76,7 @@ class GridWidget(QOpenGLWidget):
         self.current_map_file = "valdeiglesias.png"
         self.custom_map_path = None
         self._is_initialized = False
+        self._display_viewport = (0.0, 0.0, 1.0, 1.0)
 
         self.metrics_timer = QtCore.QTimer(self)
         self.metrics_timer.setInterval(1000)
@@ -98,17 +111,26 @@ class GridWidget(QOpenGLWidget):
         self.activate_vao = self.ctx.vertex_array(self.activate_program, [(vbo, "2f", "aPos")], index_buffer=ebo)
         self.block_vao = self.ctx.vertex_array(self.block_program, [(vbo, "2f", "aPos")], index_buffer=ebo)
 
-        # Creamos dos texturas y dos FBOs para almacenar el estado de la simulación. Usamos un enfoque de doble búfer, donde una textura se usa como fuente (estado actual) y la otra se usa como destino (nuevo estado) en cada paso de la simulación. Esto nos permite actualizar el estado de la simulación sin tener que leer datos de vuelta a la CPU, lo que es mucho más eficiente.
-        for _ in range(2): 
-            tex = self.ctx.texture((self.config.grid_width, self.config.grid_height), 4, dtype="f4")
-            tex.filter = (moderngl.NEAREST, moderngl.NEAREST)
-            tex.repeat_x = False  
-            tex.repeat_y = False
-            self.textures.append(tex) # Con append agregamos cada textura a la lista de texturas, lo que nos permite acceder a ellas fácilmente por índice (0 y 1) para alternar entre la textura fuente y la textura destino en cada paso de la simulación.
-            self.fbos.append(self.ctx.framebuffer(color_attachments=[tex])) # Creamos un framebuffer, que es un objeto de OpenGL que nos permite renderizar directamente a una textura. Al crear un framebuffer con una textura como color attachment, podemos usar ese framebuffer para renderizar y actualizar el contenido de la textura en la GPU. Al igual que con las texturas, agregamos cada framebuffer a la lista de fbos para poder acceder a ellos fácilmente por índice.
+        self._create_sim_buffers(self.config.grid_width, self.config.grid_height)
 
         self.reset_state() # Carga el mapa inicial y lo escribe en las texturas para comenzar la simulación. Esto asegura que cuando la aplicación se inicie, ya tengamos un estado inicial de la simulación cargado y listo para ser renderizado y simulado.
         self._is_initialized = True
+
+    def _create_sim_buffers(self, width: int, height: int):
+        for fbo in self.fbos:
+            fbo.release()
+        for tex in self.textures:
+            tex.release()
+
+        self.fbos = []
+        self.textures = []
+        for _ in range(2):
+            tex = self.ctx.texture((width, height), 4, dtype="f4")
+            tex.filter = (moderngl.NEAREST, moderngl.NEAREST)
+            tex.repeat_x = False
+            tex.repeat_y = False
+            self.textures.append(tex)
+            self.fbos.append(self.ctx.framebuffer(color_attachments=[tex]))
 
     # El método paintGL se llama cada vez que la ventana necesita ser redibujada. En este método, configuramos el framebuffer para renderizar, limpiamos la pantalla con un color de fondo, y luego usamos el programa de display para renderizar la textura actual de la simulación en la pantalla. Esto nos permite ver el estado actual del fuego en la cuadrícula.
     def paintGL(self): 
@@ -118,10 +140,42 @@ class GridWidget(QOpenGLWidget):
         draw_fbo = self.ctx.detect_framebuffer() #
         draw_fbo.use()
 
+        fb_w, fb_h = draw_fbo.size
+        self.ctx.viewport = (0, 0, max(1, fb_w), max(1, fb_h))
+
         self.ctx.clear(0.06, 0.08, 0.09, 1.0)
+
+        view_w = max(1.0, float(self.width()))
+        view_h = max(1.0, float(self.height()))
+        tex_w = max(1, self.config.grid_width)
+        tex_h = max(1, self.config.grid_height)
+
+        # Mostramos el mapa completo (fit) para mantener una correspondencia
+        # estable entre celdas y vista al redimensionar la ventana.
+        scale = min(view_w / tex_w, view_h / tex_h)
+        vp_w = max(1.0, tex_w * scale)
+        vp_h = max(1.0, tex_h * scale)
+        vp_x = (view_w - vp_w) / 2.0
+        vp_y = (view_h - vp_h) / 2.0
+        self._display_viewport = (vp_x, vp_y, vp_w, vp_h)
+
+        # Conversión a píxeles reales del framebuffer para evitar errores HiDPI.
+        scale_x = fb_w / view_w
+        scale_y = fb_h / view_h
+        gl_vp_x = int(round(vp_x * scale_x))
+        gl_vp_y = int(round(vp_y * scale_y))
+        gl_vp_w = max(1, int(round(vp_w * scale_x)))
+        gl_vp_h = max(1, int(round(vp_h * scale_y)))
+        self.ctx.viewport = (gl_vp_x, gl_vp_y, gl_vp_w, gl_vp_h)
 
         self.textures[self.current_texture_idx].use(location=0)
         self.display_program["u_state_texture"].value = 0
+        self.display_program["u_bg_texture"].value = 1
+        if self.bg_texture is not None:
+            self.bg_texture.use(location=1)
+            self.display_program["u_has_bg_texture"].value = 1
+        else:
+            self.display_program["u_has_bg_texture"].value = 0
         self.display_program["u_view_mode"].value = self.view_mode
         self.display_vao.render(moderngl.TRIANGLES)
 
@@ -165,6 +219,7 @@ class GridWidget(QOpenGLWidget):
             # la fuente para la siguiente iteración de la simulación.
 
             self.fbos[dest_idx].use() 
+            self.ctx.viewport = (0, 0, self.config.grid_width, self.config.grid_height)
             self.step_program["u_grid_size"].value = (self.config.grid_width, self.config.grid_height)
             self.step_program["u_wind"].value = (wind_x, wind_y)
             self.step_program["u_time"].value = float(self.frame_count)
@@ -196,7 +251,12 @@ class GridWidget(QOpenGLWidget):
 
         self.makeCurrent()
         try:
-            rgba_grid = self._load_initial_map_rgba()
+            target_width, target_height = self._target_grid_size_for_current_map()
+            rgba_grid = self._load_initial_map_rgba(target_width, target_height)
+            self.config.grid_width = target_width
+            self.config.grid_height = target_height
+            self._ensure_sim_buffers_size(target_width, target_height)
+            self._update_background_texture_for_map()
             self._write_state_rgba(rgba_grid)
             self._reapply_step_uniforms()
         finally:
@@ -205,7 +265,17 @@ class GridWidget(QOpenGLWidget):
         self._emit_metrics_from_array(rgba_grid)
         self.update()
 
-    def _load_initial_map_rgba(self) -> np.ndarray:
+    def _load_initial_map_rgba(self, target_width: int, target_height: int) -> np.ndarray:
+        artificial_map_factories = {
+            "valdeiglesias.png": generate_valdeiglesias,
+            "pedriza.png": generate_pedriza,
+            "ontigola.png": generate_ontigola,
+            "rivas.png": generate_rivas,
+        }
+        if self.custom_map_path is None and self.current_map_file in artificial_map_factories:
+            rgba = artificial_map_factories[self.current_map_file](target_width, target_height)
+            return np.flipud(rgba).astype(np.float32, copy=False)
+
         if self.custom_map_path is not None:
             map_path = Path(self.custom_map_path)
         else:
@@ -213,17 +283,98 @@ class GridWidget(QOpenGLWidget):
 
         if not map_path.exists():
             raise FileNotFoundError(f"No se encontro el mapa inicial: {map_path}")
-        return self._load_rgba_from_image_path(map_path)
+        return self._load_rgba_from_image_path(map_path, target_width, target_height)
 
-    def _load_rgba_from_image_path(self, image_path: Path) -> np.ndarray:
+    def _load_rgba_from_image_path(self, image_path: Path, target_width: int, target_height: int) -> np.ndarray:
         img = Image.open(image_path).convert("RGBA")
-        img = img.resize((self.config.grid_width, self.config.grid_height), Image.BILINEAR)
+        img = img.resize((target_width, target_height), Image.BILINEAR)
         img = img.transpose(Image.FLIP_TOP_BOTTOM)
 
         rgba_grid = np.array(img, dtype=np.float32) / 255.0
         if rgba_grid.ndim != 3 or rgba_grid.shape[2] != 4:
             raise ValueError("El mapa cargado no tiene 4 canales RGBA tras la conversión")
         return rgba_grid
+
+    def _ensure_sim_buffers_size(self, width: int, height: int):
+        if not self.textures:
+            self._create_sim_buffers(width, height)
+            return
+
+        current_size = self.textures[0].size
+        if current_size[0] != width or current_size[1] != height:
+            self._create_sim_buffers(width, height)
+
+    def _load_bg_texture(self):
+        maps_dir = Path(__file__).parent / "maps"
+        bg_path = maps_dir / "guadarrama1_satelite.png"
+        if not bg_path.exists():
+            bg_path = maps_dir / "guadarrama1_satelite.jpg"
+        if not bg_path.exists():
+            bg_path = maps_dir / "guadarrama1_raster.png"
+        if not bg_path.exists():
+            bg_path = maps_dir / "guadarrama1_raster.jpg"
+        if not bg_path.exists():
+            self._release_bg_texture()
+            return
+
+        bg_img = Image.open(bg_path).convert("RGBA")
+        bg_img = bg_img.resize((self.config.grid_width, self.config.grid_height), Image.BILINEAR)
+        bg_img = bg_img.transpose(Image.FLIP_TOP_BOTTOM)
+
+        bg_array = np.array(bg_img, dtype=np.float32) / 255.0
+
+        self._release_bg_texture()
+        self.bg_texture = self.ctx.texture(
+            (self.config.grid_width, self.config.grid_height),
+            4,
+            bg_array.tobytes(),
+            dtype="f4",
+        )
+        self.bg_texture.filter = (moderngl.LINEAR, moderngl.LINEAR)
+        self.bg_texture.repeat_x = False
+        self.bg_texture.repeat_y = False
+
+    def _release_bg_texture(self):
+        if self.bg_texture is not None:
+            self.bg_texture.release()
+            self.bg_texture = None
+
+    def _update_background_texture_for_map(self):
+        if self._is_real_map_file(self.current_map_file):
+            self._load_bg_texture()
+            return
+        self._release_bg_texture()
+
+    def _is_real_map_file(self, map_file: str) -> bool:
+        return map_file in self.REAL_MAP_FILES
+
+    def _use_native_map_resolution(self) -> bool:
+        # Los mapas reales y externos usan su resolucion nativa.
+        # Los artificiales respetan grid_width/grid_height de config.
+        return self.custom_map_path is not None or self._is_real_map_file(self.current_map_file)
+
+    def _target_grid_size_for_current_map(self) -> tuple[int, int]:
+        if not self._use_native_map_resolution():
+            return self._artificial_grid_size
+
+        cfg_w = max(1, int(self.config.grid_width))
+        cfg_h = max(1, int(self.config.grid_height))
+
+        map_path = self._resolve_current_map_path()
+        if not map_path.exists():
+            return cfg_w, cfg_h
+
+        width, height = self._read_image_size(map_path)
+        return max(1, int(width)), max(1, int(height))
+
+    def _resolve_current_map_path(self) -> Path:
+        if self.custom_map_path is not None:
+            return Path(self.custom_map_path)
+        return Path(__file__).parent / "maps" / self.current_map_file
+
+    def _read_image_size(self, image_path: Path) -> tuple[int, int]:
+        with Image.open(image_path) as img:
+            return img.size
 
     def _write_state_rgba(self, rgba_grid: np.ndarray):
         self.textures[0].write(rgba_grid.tobytes(), alignment=1)
@@ -236,6 +387,7 @@ class GridWidget(QOpenGLWidget):
     def _reapply_step_uniforms(self):
         if self.step_program is None:
             return
+        self.step_program["u_grid_size"].value = (self.config.grid_width, self.config.grid_height)
         self.step_program["u_beta"].value = self.beta
         self.step_program["u_gamma"].value = self.gamma
         self.step_program["u_pavesas_prob"].value = self.pavesas_prob
@@ -299,6 +451,7 @@ class GridWidget(QOpenGLWidget):
             "Mar de Ontígola (Humedal)": "ontigola.png",
             "Mar de Ontigola (Humedal)": "ontigola.png",
             "Rivas (IUF)": "rivas.png",
+            "Sierra de Guadarrama (Real)": "guadarrama1_real.png",
         }
         self.current_map_file = map_names.get(map_name, "valdeiglesias.png")
         self.custom_map_path = None
@@ -373,6 +526,7 @@ class GridWidget(QOpenGLWidget):
             dest_idx = 1 - source_idx
 
             self.fbos[dest_idx].use()
+            self.ctx.viewport = (0, 0, self.config.grid_width, self.config.grid_height)
             program["u_grid_size"].value = (self.config.grid_width, self.config.grid_height)
             program[coord_uniform].value = (x, y)
 
@@ -408,8 +562,17 @@ class GridWidget(QOpenGLWidget):
         if self.width() <= 0 or self.height() <= 0:
             return 0, 0
 
-        gx = int((px / self.width()) * self.config.grid_width)
-        gy = int(((self.height() - py) / self.height()) * self.config.grid_height)
+        vp_x, vp_y, vp_w, vp_h = self._display_viewport
+
+        gl_y = self.height() - py
+        if px < vp_x or px >= (vp_x + vp_w) or gl_y < vp_y or gl_y >= (vp_y + vp_h):
+            return -1, -1
+
+        rel_x = (px - vp_x) / vp_w
+        rel_y = (gl_y - vp_y) / vp_h
+
+        gx = int(rel_x * self.config.grid_width)
+        gy = int(rel_y * self.config.grid_height)
         gx = max(0, min(gx, self.config.grid_width - 1))
         gy = max(0, min(gy, self.config.grid_height - 1))
         return gx, gy

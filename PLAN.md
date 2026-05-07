@@ -91,3 +91,14 @@ Cada píxel de la textura de simulación representa un autómata celular:
 - [x] Tarea 11.2: Traducción Matemática-Realidad en vivo. Modificar `main_window.py` para que, al mover los sliders, el texto muestre el valor matemático seguido de su interpretación física real en base al enunciado.
   - Para $\beta$: Mostrar la "Humedad del terreno (%)" inversamente proporcional al slider.
   - Para $\gamma$: Mostrar el "Tiempo de llama (minutos)", calculado como $1 / \gamma$.
+
+  ### SPRINT 12: Integración de Mapas Reales GIS (Topografía y NDVI) [COMPLETADO]
+- [x] Tarea 12.1: Script de Fusión RGBA. En `map_generator.py`, crear la función `generate_from_real_maps` para leer mapas crudos en escala de grises (MDT y vegetación) y empaquetarlos en la textura que requiere el Shader.
+- [x] Tarea 12.2: Inyección de datos GIS. Usar capturas tratadas de QGIS (`guadarrama1_height.jpg` y `guadarrama1_fuel.jpg`) inyectando el Modelo Digital del Terreno en el canal Verde y el Índice de Combustible en el canal Azul.
+- [x] Tarea 12.3: UI del Nuevo Escenario. Añadir "Sierra de Guadarrama (Real)" a la interfaz, permitiendo al usuario probar la Mecánica Estadística del fuego sobre un entorno asimétrico y topográficamente exacto.
+
+### SPRINT 13: Fotorrealismo y Geometría Dinámica [COMPLETADO]
+- [x] Tarea 13.1: Evitar deformación geométrica. Modificar `map_generator.py` para que respete el Aspect Ratio (ancho x alto) original de los mapas GIS de entrada, evitando artefactos en la propagación diagonal.
+- [x] Tarea 13.2: Redimensionamiento Dinámico en GPU. Actualizar `grid_widget.py` para que reconfigure `u_grid_size` al vuelo dependiendo de las proporciones del mapa PNG cargado.
+- [x] Tarea 13.3: Textura Visual Satelital. Cargar en paralelo (location=1) el mapa raster satelital (`guadarrama1_raster.jpg`).
+- [x] Tarea 13.4: Renderizado Dinámico sobre Satélite. Modificar `display.glsl` para mostrar la fotografía real del satélite debajo del fuego, oscureciéndola (cenizas) donde el modelo físico indique que el combustible se ha agotado.

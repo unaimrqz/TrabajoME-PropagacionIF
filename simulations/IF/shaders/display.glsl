@@ -16,7 +16,9 @@ out vec4 FragColor;
 in vec2 TexCoords;
 
 uniform sampler2D u_state_texture;
+uniform sampler2D u_bg_texture;
 uniform int u_view_mode;
+uniform int u_has_bg_texture;
 
 void main() {
     vec4 state = texture(u_state_texture, TexCoords);
@@ -31,6 +33,26 @@ void main() {
 
     if (u_view_mode == 2) {
         FragColor = vec4(0.0, 0.0, fuel, 1.0);
+        return;
+    }
+
+    if (u_view_mode == 3 && u_has_bg_texture == 1) {
+        vec4 bg_color = texture(u_bg_texture, TexCoords);
+
+        if (fire > 0.0) {
+            vec3 low_fire = vec3(0.85, 0.12, 0.02);
+            vec3 high_fire = vec3(1.0, 0.95, 0.20);
+            vec3 fire_color = mix(low_fire, high_fire, clamp(fire, 0.0, 1.0));
+            FragColor = vec4(fire_color, 1.0);
+            return;
+        }
+
+        if (fuel > 0.0) {
+            FragColor = bg_color;
+            return;
+        }
+
+        FragColor = vec4(bg_color.rgb * 0.3, 1.0);
         return;
     }
 
@@ -49,11 +71,9 @@ void main() {
         float fuel_t = clamp(fuel, 0.0, 1.0);
         vec3 color = mix(dry_grass, dense_green, fuel_t);
 
-        // Modulación suave por elevación (solo un toque visual)
         float elev_light = 0.95 + 0.10 * elev;
         color *= elev_light;
 
-        // Curvas de nivel muy sutiles
         float contour = smoothstep(0.42, 0.58, fract(elev * 12.0));
         color *= mix(0.97, 1.05, contour);
 
