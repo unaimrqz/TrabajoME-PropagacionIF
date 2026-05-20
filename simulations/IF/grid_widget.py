@@ -1,23 +1,21 @@
 # grid_widget.py
-# Es el motor de la simulación: aquí es donde se realiza toda la lógica de renderizado,
-# simulación, y manejo de la interacción del usuario. Este widget se encarga de crear el 
-# contexto de OpenGL, cargar los shaders, configurar las texturas y FBOs para almacenar 
-# el estado de la simulación, y ejecutar el ciclo principal de la simulación en la GPU.
-# También maneja la interacción del usuario para activar o bloquear células, y actualiza 
-# las métricas de SIR que se muestran en la interfaz gráfica.
+"""
+Widget OpenGL para la simulación y renderizado en tiempo real.
+Gestiona texturas, shaders y el estado del autómata celular SIR.
+"""
 
+from pathlib import Path
+import math
+import random
+import time
 
-from pathlib import Path                                    # para cuando se necesite cargar archivos, como los shaders o los mapas iniciales
-import math                                                 # ¿Por qué math y no numpy? Porque math es más rápido para operaciones escalares, y aquí solo necesitamos funciones trigonométricas para el viento, no operaciones vectoriales complejas.
-import random                                               # ¿Por qué random y no numpy.random? Porque random es más simple y suficiente para generar variaciones de viento, no necesitamos la funcionalidad avanzada de numpy.random para esto.
+import moderngl
+import numpy as np
+from PIL import Image
+from PySide6 import QtCore
+from PySide6.QtOpenGLWidgets import QOpenGLWidget
 
-import moderngl                                             # Moderngl es un wrapper (un wrapper es ) de OpenGL para Python que facilita la creación de gráficos acelerados por hardware. Nos permite escribir shaders personalizados para simular el comportamiento del fuego y renderizarlo eficientemente en la GPU.
-import numpy as np 
-from PIL import Image                                       # para cargar mapas iniciales desde archivos de imagen, convertirlos a RGBA y luego a arrays de numpy que podemos subir como texturas a la GPU.
-from PySide6 import QtCore                                  # para señales, slots, temporizadores y manejo de eventos en la interfaz gráfica
-from PySide6.QtOpenGLWidgets import QOpenGLWidget           # QOpenGLWidget es un widget de Qt que nos permite renderizar gráficos usando OpenGL. Es la base sobre la que construiremos toda la simulación visual del fuego, permitiéndonos aprovechar la potencia de la GPU para simular y renderizar el comportamiento del fuego en tiempo real.
-
-from config import SimulationConfig                         # importamos la configuración de la simulación, que nos proporciona parámetros como el tamaño de la cuadrícula, las tasas de infección y recuperación, etc. Esta configuración se utilizará para inicializar el estado de la simulación y para controlar su comportamiento a lo largo del tiempo.
+from config import SimulationConfig
 from map_generator import (
     generate_ontigola,
     generate_pedriza,
@@ -26,18 +24,18 @@ from map_generator import (
 )
 
 
-def load_shader_source(shader_file: str) -> str: 
+def load_shader_source(shader_file: str) -> str:
     shader_path = Path(__file__).parent / shader_file
     with open(shader_path, "r", encoding="utf-8") as f:
         return f.read()
 
 
 class GridWidget(QOpenGLWidget):
-    metrics_updated = QtCore.Signal(float, float, float)
+    metrics_updated = QtCore.Signal(float, float, float, float, int)
     fire_extinguished = QtCore.Signal()
     REAL_MAP_FILES = {"guadarrama1_real.png", "guadarrama_real.png"}
 
-    def __init__(self, config: SimulationConfig): # En el constructor inicializamos todas las variables necesarias para la simulación, como los programas de shaders, los VAOs, las texturas, los FBOs, y otros parámetros relacionados con el viento y la visualización. También configuramos un temporizador para actualizar las métricas de SIR cada segundo.
+    def __init__(self, config: SimulationConfig):
         super().__init__()
         self.config = config
         self._artificial_grid_size = (
@@ -78,34 +76,38 @@ class GridWidget(QOpenGLWidget):
         self._is_initialized = False
         self._display_viewport = (0.0, 0.0, 1.0, 1.0)
 
+        # Seguimiento del rendimiento para calcular iteraciones/segundo
+        self.last_frame_count = 0
+        self.last_metrics_time = time.time()
+
         self.metrics_timer = QtCore.QTimer(self)
         self.metrics_timer.setInterval(1000)
         self.metrics_timer.timeout.connect(self.update_sir_metrics)
         self.metrics_timer.start()
 
-    def initializeGL(self): # El método clave, donde configuramos el contexto de OpenGL, cargamos los shaders, creamos los VAOs para renderizar un cuadrado que cubre toda la pantalla, y configuramos las texturas y FBOs para almacenar el estado de la simulación. También cargamos el mapa inicial y lo escribimos en las texturas para comenzar la simulación.
-        self.ctx = moderngl.create_context() # Creamos el contexto de OpenGL, que es necesario para cualquier operación gráfica. Este contexto nos permitirá crear shaders, texturas, buffers y realizar renderizado en la GPU.
+    def initializeGL(self): # El mÃ©todo clave, donde configuramos el contexto de OpenGL, cargamos los shaders, creamos los VAOs para renderizar un cuadrado que cubre toda la pantalla, y configuramos las texturas y FBOs para almacenar el estado de la simulaciÃ³n. TambiÃ©n cargamos el mapa inicial y lo escribimos en las texturas para comenzar la simulaciÃ³n.
+        self.ctx = moderngl.create_context() # Creamos el contexto de OpenGL, que es necesario para cualquier operaciÃ³n grÃ¡fica. Este contexto nos permitirÃ¡ crear shaders, texturas, buffers y realizar renderizado en la GPU.
 
-        # Cargamos los shaders desde archivos GLSL. Estos shaders son programas que se ejecutan en la GPU para realizar el renderizado y la simulación del fuego. El shader de vértices es común para todos, mientras que los shaders de fragmentos son específicos para cada etapa de la simulación (renderizado, paso de simulación, activación de células, bloqueo de células).
+        # Cargamos los shaders desde archivos GLSL. Estos shaders son programas que se ejecutan en la GPU para realizar el renderizado y la simulaciÃ³n del fuego. El shader de vÃ©rtices es comÃºn para todos, mientras que los shaders de fragmentos son especÃ­ficos para cada etapa de la simulaciÃ³n (renderizado, paso de simulaciÃ³n, activaciÃ³n de cÃ©lulas, bloqueo de cÃ©lulas).
         vertex_source = load_shader_source("shaders/vertex.glsl")
         display_source = load_shader_source("shaders/display.glsl")
         step_source = load_shader_source("shaders/step.glsl")
         activate_source = load_shader_source("shaders/activate_cell.glsl")
         block_source = load_shader_source("shaders/block_cell.glsl")
 
-        # Creamos los programas de shaders a partir del código fuente cargado. Cada programa de shader se compila y se vincula, y luego podemos usarlo para renderizar o simular el fuego. El programa de display se usará para renderizar la cuadrícula en la pantalla, el programa de step se usará para calcular el siguiente estado de la simulación, y los programas de activate y block se usarán para modificar el estado de células individuales cuando el usuario interactúe con la cuadrícula.
+        # Creamos los programas de shaders a partir del cÃ³digo fuente cargado. Cada programa de shader se compila y se vincula, y luego podemos usarlo para renderizar o simular el fuego. El programa de display se usarÃ¡ para renderizar la cuadrÃ­cula en la pantalla, el programa de step se usarÃ¡ para calcular el siguiente estado de la simulaciÃ³n, y los programas de activate y block se usarÃ¡n para modificar el estado de cÃ©lulas individuales cuando el usuario interactÃºe con la cuadrÃ­cula.
         self.display_program = self.ctx.program(vertex_shader=vertex_source, fragment_shader=display_source)
         self.step_program = self.ctx.program(vertex_shader=vertex_source, fragment_shader=step_source)
         self.activate_program = self.ctx.program(vertex_shader=vertex_source, fragment_shader=activate_source)
         self.block_program = self.ctx.program(vertex_shader=vertex_source, fragment_shader=block_source)
 
-        # Creamos un VAO (Vertex Array Object) para cada programa de shader. El VAO define cómo se deben interpretar los datos de vértices que le pasamos. En este caso, estamos creando un cuadrado que cubre toda la pantalla, con coordenadas de vértices que van de -1 a 1 en ambas direcciones. Este cuadrado se usará para renderizar la simulación y para aplicar los shaders de paso, activación y bloqueo a toda la cuadrícula.
-        vertices = np.array([-1, -1, 1, -1, 1, 1, -1, 1], dtype="f4") #  hay en total 4 vértices, cada uno con 2 componentes (x e y), que forman un cuadrado que cubre toda la pantalla. Las coordenadas van de -1 a 1 porque en OpenGL, el espacio de coordenadas normalizado para el renderizado va de -1 a 1 en ambas direcciones.
-        indices = np.array([0, 1, 2, 0, 2, 3], dtype="i4") # Estos índices definen dos triángulos que forman el cuadrado. El primer triángulo está formado por los vértices 0, 1 y 2, y el segundo triángulo está formado por los vértices 0, 2 y 3. Esto es necesario porque OpenGL renderiza en términos de triángulos, así que necesitamos dividir nuestro cuadrado en dos triángulos para poder renderizarlo correctamente.
+        # Creamos un VAO (Vertex Array Object) para cada programa de shader. El VAO define cÃ³mo se deben interpretar los datos de vÃ©rtices que le pasamos. En este caso, estamos creando un cuadrado que cubre toda la pantalla, con coordenadas de vÃ©rtices que van de -1 a 1 en ambas direcciones. Este cuadrado se usarÃ¡ para renderizar la simulaciÃ³n y para aplicar los shaders de paso, activaciÃ³n y bloqueo a toda la cuadrÃ­cula.
+        vertices = np.array([-1, -1, 1, -1, 1, 1, -1, 1], dtype="f4") #  hay en total 4 vÃ©rtices, cada uno con 2 componentes (x e y), que forman un cuadrado que cubre toda la pantalla. Las coordenadas van de -1 a 1 porque en OpenGL, el espacio de coordenadas normalizado para el renderizado va de -1 a 1 en ambas direcciones.
+        indices = np.array([0, 1, 2, 0, 2, 3], dtype="i4") # Estos Ã­ndices definen dos triÃ¡ngulos que forman el cuadrado. El primer triÃ¡ngulo estÃ¡ formado por los vÃ©rtices 0, 1 y 2, y el segundo triÃ¡ngulo estÃ¡ formado por los vÃ©rtices 0, 2 y 3. Esto es necesario porque OpenGL renderiza en tÃ©rminos de triÃ¡ngulos, asÃ­ que necesitamos dividir nuestro cuadrado en dos triÃ¡ngulos para poder renderizarlo correctamente.
         vbo = self.ctx.buffer(vertices) 
         ebo = self.ctx.buffer(indices)
 
-        # Creamos un VAO para cada programa de shader, usando el mismo VBO (vertices) y EBO (índices). Esto nos permite usar el mismo conjunto de vértices para renderizar con diferentes shaders, lo que es eficiente y conveniente. Cada VAO se configura para interpretar los datos del VBO como pares de floats (2f) que corresponden a la variable de entrada "aPos" en los shaders.
+        # Creamos un VAO para cada programa de shader, usando el mismo VBO (vertices) y EBO (Ã­ndices). Esto nos permite usar el mismo conjunto de vÃ©rtices para renderizar con diferentes shaders, lo que es eficiente y conveniente. Cada VAO se configura para interpretar los datos del VBO como pares de floats (2f) que corresponden a la variable de entrada "aPos" en los shaders.
         self.display_vao = self.ctx.vertex_array(self.display_program, [(vbo, "2f", "aPos")], index_buffer=ebo)
         self.step_vao = self.ctx.vertex_array(self.step_program, [(vbo, "2f", "aPos")], index_buffer=ebo)
         self.activate_vao = self.ctx.vertex_array(self.activate_program, [(vbo, "2f", "aPos")], index_buffer=ebo)
@@ -113,7 +115,7 @@ class GridWidget(QOpenGLWidget):
 
         self._create_sim_buffers(self.config.grid_width, self.config.grid_height)
 
-        self.reset_state() # Carga el mapa inicial y lo escribe en las texturas para comenzar la simulación. Esto asegura que cuando la aplicación se inicie, ya tengamos un estado inicial de la simulación cargado y listo para ser renderizado y simulado.
+        self.reset_state() # Carga el mapa inicial y lo escribe en las texturas para comenzar la simulaciÃ³n. Esto asegura que cuando la aplicaciÃ³n se inicie, ya tengamos un estado inicial de la simulaciÃ³n cargado y listo para ser renderizado y simulado.
         self._is_initialized = True
 
     def _create_sim_buffers(self, width: int, height: int):
@@ -132,7 +134,7 @@ class GridWidget(QOpenGLWidget):
             self.textures.append(tex)
             self.fbos.append(self.ctx.framebuffer(color_attachments=[tex]))
 
-    # El método paintGL se llama cada vez que la ventana necesita ser redibujada. En este método, configuramos el framebuffer para renderizar, limpiamos la pantalla con un color de fondo, y luego usamos el programa de display para renderizar la textura actual de la simulación en la pantalla. Esto nos permite ver el estado actual del fuego en la cuadrícula.
+    # El mÃ©todo paintGL se llama cada vez que la ventana necesita ser redibujada. En este mÃ©todo, configuramos el framebuffer para renderizar, limpiamos la pantalla con un color de fondo, y luego usamos el programa de display para renderizar la textura actual de la simulaciÃ³n en la pantalla. Esto nos permite ver el estado actual del fuego en la cuadrÃ­cula.
     def paintGL(self): 
         if not self._is_initialized:
             return
@@ -159,7 +161,7 @@ class GridWidget(QOpenGLWidget):
         vp_y = (view_h - vp_h) / 2.0
         self._display_viewport = (vp_x, vp_y, vp_w, vp_h)
 
-        # Conversión a píxeles reales del framebuffer para evitar errores HiDPI.
+        # ConversiÃ³n a pÃ­xeles reales del framebuffer para evitar errores HiDPI.
         scale_x = fb_w / view_w
         scale_y = fb_h / view_h
         gl_vp_x = int(round(vp_x * scale_x))
@@ -179,44 +181,24 @@ class GridWidget(QOpenGLWidget):
         self.display_program["u_view_mode"].value = self.view_mode
         self.display_vao.render(moderngl.TRIANGLES)
 
-    # Es EL método: aquí es donde se realiza la lógica principal de la simulación. En cada paso, calculamos el nuevo estado de la simulación usando el shader de step, que toma como entrada la textura actual (estado actual) y produce una nueva textura (nuevo estado) basada en las reglas de propagación del fuego, el viento, y otros parámetros. Luego alternamos entre las texturas fuente y destino para el siguiente paso. Este método se llama repetidamente para avanzar la simulación a lo largo del tiempo.
     def step_once(self):
         if not self._is_initialized:
             return
 
-        self.makeCurrent() # Usamos makeCurrent para asegurarnos de que el contexto de OpenGL esté activo antes de realizar cualquier operación gráfica. Esto es necesario porque podríamos tener múltiples widgets o contextos en la aplicación, y necesitamos asegurarnos de que estamos operando en el contexto correcto antes de renderizar o actualizar texturas. Al llamar a makeCurrent, nos aseguramos de que todas las operaciones gráficas que realizamos a continuación se apliquen al contexto de este widget específico.
-        
+        self.makeCurrent()
         try:
-            source_idx = self.current_texture_idx # el metodo current_texture_idx de donde sale? Es una variable de instancia que definimos en el constructor de la clase GridWidget. Esta variable se utiliza para llevar un seguimiento de cuál de las dos texturas (y sus correspondientes FBOs) estamos usando actualmente como fuente para la simulación. En cada paso de la simulación, alternamos entre las dos texturas, por lo que source_idx nos indica cuál es la textura actual que contiene el estado actual de la simulación, y dest_idx nos indica cuál es la textura destino donde vamos a escribir el nuevo estado calculado por el shader de step.
-            dest_idx = 1 - source_idx # Al restar source_idx de 1, obtenemos el índice opuesto (si source_idx es 0, dest_idx será 1, y viceversa). Esto nos permite alternar entre las dos texturas de manera eficiente sin necesidad de usar condicionales adicionales. En cada paso de la simulación, renderizamos usando el shader de step para calcular el nuevo estado basado en la textura fuente (source_idx) y escribimos el resultado en la textura destino (dest_idx). Luego actualizamos current_texture_idx a dest_idx para que en el siguiente paso, la textura recién calculada se convierta en la nueva fuente.
+            source_idx = self.current_texture_idx
+            dest_idx = 1 - source_idx
             self.frame_count += 1 
 
             if self.markov_wind: 
-                # En lugar de hacer aleatorio cada paso en un rango fijo, el proceso es:
-                # 1. Tomamos el ángulo actual del viento (current_wind_angle).
-                # 2. Le sumamos una pequeña variación aleatoria dentro del rago definido por markov_amplitude. 
-                # 3. Le sumamos la resta entre el ángulo base del viento (base_wind_angle) y el ángulo actual, multiplicada por un factor de corrección (0.05 en este caso) que hace que el viento tienda a volver a su dirección base con el tiempo. Esto crea un efecto de "resorte" que evita que el viento se desvíe demasiado de su dirección base, pero aún así permite cierta variabilidad aleatoria en la dirección del viento a lo largo del tiempo, lo que simula un viento más realista y dinámico.
                 self.current_wind_angle += random.uniform(-self.markov_amplitude, self.markov_amplitude) 
-                self.current_wind_angle += (self.base_wind_angle - self.current_wind_angle) * 0.05 # Esta línea implementa un efecto de "resorte" que hace que el ángulo del viento tienda a volver a la dirección base con el tiempo. Al multiplicar la diferencia entre el ángulo base y el ángulo actual por 0.05, estamos aplicando una pequeña corrección en cada paso que hace que el viento no se desvíe demasiado de su dirección base, pero aún así permita cierta variabilidad aleatoria. Esto ayuda a simular un viento que cambia de dirección de manera realista sin volverse completamente errático. Si markov_wind está desactivado, simplemente mantenemos el ángulo del viento igual al ángulo base, lo que significa que el viento no cambiará de dirección a lo largo del tiempo.
+                self.current_wind_angle += (self.base_wind_angle - self.current_wind_angle) * 0.05
             else:
                 self.current_wind_angle = self.base_wind_angle
 
-            # Calculamos las componentes x e y del viento:
             wind_x = math.cos(self.current_wind_angle) * self.wind_speed_base 
             wind_y = math.sin(self.current_wind_angle) * self.wind_speed_base
-
-            # En lo que queda se configura el framebuffer destino para renderizar, 
-            # se establecen los uniformes necesarios para el shader de step (como 
-            # el tamaño de la cuadrícula, la dirección y velocidad del viento, el 
-            # tiempo transcurrido, y los parámetros beta, gamma y pavesas_prob), 
-            # se vincula la textura fuente (estado actual) para que el shader pueda
-            # leerla, y luego se renderiza un cuadrado que cubre toda la pantalla
-            # usando el shader de step. Esto hace que el shader de step se ejecute 
-            # para cada píxel de la textura destino, calculando el nuevo estado de 
-            # la simulación basado en el estado actual y las reglas definidas en el
-            # shader. Finalmente, se actualiza current_texture_idx a dest_idx para
-            # que en el siguiente paso, la nueva textura calculada se convierta en
-            # la fuente para la siguiente iteración de la simulación.
 
             self.fbos[dest_idx].use() 
             self.ctx.viewport = (0, 0, self.config.grid_width, self.config.grid_height)
@@ -237,13 +219,10 @@ class GridWidget(QOpenGLWidget):
 
         self.update()
 
-
-    # De aquí en adelante, definimos métodos para reiniciar el estado de la simulación, 
-    # cargar mapas iniciales, actualizar las métricas de SIR, manejar la interacción del 
-    # usuario para activar o bloquear células, y convertir coordenadas de píxeles a 
-    # coordenadas de cuadrícula. Estos métodos permiten controlar la simulación, modificar 
-    # el estado de la cuadrícula en respuesta a la interacción del usuario, y actualizar 
-    # las métricas que se muestran en la interfaz gráfica.
+    # usuario para activar o bloquear cÃ©lulas, y convertir coordenadas de pÃ­xeles a 
+    # coordenadas de cuadrÃ­cula. Estos mÃ©todos permiten controlar la simulaciÃ³n, modificar 
+    # el estado de la cuadrÃ­cula en respuesta a la interacciÃ³n del usuario, y actualizar 
+    # las mÃ©tricas que se muestran en la interfaz grÃ¡fica.
 
     def reset_state(self): 
         if self.ctx is None:
@@ -292,7 +271,7 @@ class GridWidget(QOpenGLWidget):
 
         rgba_grid = np.array(img, dtype=np.float32) / 255.0
         if rgba_grid.ndim != 3 or rgba_grid.shape[2] != 4:
-            raise ValueError("El mapa cargado no tiene 4 canales RGBA tras la conversión")
+            raise ValueError("El mapa cargado no tiene 4 canales RGBA tras la conversiÃ³n")
         return rgba_grid
 
     def _ensure_sim_buffers_size(self, width: int, height: int):
@@ -407,7 +386,7 @@ class GridWidget(QOpenGLWidget):
         susceptible_pct = (susceptible / total) * 100.0
         infected_pct = (infected / total) * 100.0
         recovered_pct = (recovered / total) * 100.0
-        self.metrics_updated.emit(susceptible_pct, infected_pct, recovered_pct)
+        self.metrics_updated.emit(susceptible_pct, infected_pct, recovered_pct, 0.0, self.frame_count)
 
     def set_pavesas_prob(self, value):
         self.pavesas_prob = max(0.0, min(0.05, float(value)))
@@ -432,8 +411,8 @@ class GridWidget(QOpenGLWidget):
         self.view_mode = int(index)
         self.update()
 
-    def set_beta(self, value: int):
-        self.beta = (float(value) / 100.0) * 1.2
+    def set_beta(self, beta_value: float):
+        self.beta = float(beta_value)
 
     def set_sim_timer(self, timer: QtCore.QTimer):
         self.sim_timer = timer
@@ -447,8 +426,8 @@ class GridWidget(QOpenGLWidget):
     def load_map(self, map_name: str):
         map_names = {
             "Valdeiglesias (Pinar)": "valdeiglesias.png",
-            "La Pedriza (Montaña)": "pedriza.png",
-            "Mar de Ontígola (Humedal)": "ontigola.png",
+            "La Pedriza (MontaÃ±a)": "pedriza.png",
+            "Mar de OntÃ­gola (Humedal)": "ontigola.png",
             "Mar de Ontigola (Humedal)": "ontigola.png",
             "Rivas (IUF)": "rivas.png",
             "Sierra de Guadarrama (Real)": "guadarrama1_real.png",
@@ -502,7 +481,17 @@ class GridWidget(QOpenGLWidget):
         susceptible_pct = (susceptible / total) * 100.0
         infected_pct = (infected / total) * 100.0
         recovered_pct = (recovered / total) * 100.0
-        self.metrics_updated.emit(susceptible_pct, infected_pct, recovered_pct)
+
+        # Cálculo de la velocidad de simulación real en it/s
+        now = time.time()
+        elapsed = now - self.last_metrics_time
+        frames_diff = self.frame_count - self.last_frame_count
+        actual_fps = frames_diff / elapsed if elapsed > 0 else 0.0
+
+        self.last_frame_count = self.frame_count
+        self.last_metrics_time = now
+
+        self.metrics_updated.emit(susceptible_pct, infected_pct, recovered_pct, actual_fps, self.frame_count)
 
     def activate_cell(self, x: int, y: int):
         self._paint_cell(x, y, self.activate_program, self.activate_vao, "u_cell_coord")
