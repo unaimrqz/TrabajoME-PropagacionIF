@@ -9,8 +9,8 @@ from dataclasses import dataclass
 
 @dataclass
 class SimulationConfig:
-    grid_width: int = 10
-    grid_height: int = 10
+    grid_width: int = 100
+    grid_height: int = 100
     diffusion: float = 0.12
     decay: float = 0.015
     fps: int = 24
